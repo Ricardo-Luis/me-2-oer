@@ -10,9 +10,8 @@ This repository hosts open educational resources (OER) designed to support the E
 ## OER in this Repository
 
 The resources available in this repository include:
-- Exercises and Industrial Application Problems that range from theoretical consolidation to industrial application of electrical machines.\ 📁 exercises
-- Laboratory Assignment Outlines on experimental tests of EM. electrical machines.\ 📁 lab-outlines
-
+- [📁 exercises] $\quad$ Exercises and Industrial Application Problems that range from theoretical consolidation to industrial application of electrical machines;
+- [📁 lab-outlines]  $\quad$  Laboratory Assignment Outlines on experimental tests of EM. electrical machines.
 
 All materials are edited using **[Typst](https://typst.app/)** and provided as PDF output. These are currently provided in Portuguese, with future plans to become bilingual (Portuguese/English).
 
