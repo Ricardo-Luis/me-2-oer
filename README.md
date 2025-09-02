@@ -34,5 +34,5 @@ Contributions to enhance or expand the resources are welcome. Please submit a pu
 &nbsp;
 ## License
 
-All materials in this repository are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+All materials in this repository are licensed under a Creative Commons Attribution-ShareAlike 4.0 International License ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en)).
  
