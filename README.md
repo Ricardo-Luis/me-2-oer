@@ -19,7 +19,7 @@ These are currently provided in Portuguese, with future plans to become bilingua
 
 \
 These materials are intended to assist students and educators in exploring topics covered in the Electric Machinery II curriculum.
-All resources are openly accessible under the principles of Open Educational Resources (OER).
+All resources are openly accessible under the principles of [Open Educational Resources](https://oercommons.org/).
 
 &nbsp;
 ## Usage
