@@ -1,5 +1,5 @@
-# Máquinas Elétricas II (REA - Recursos Educacionais Abertos)
-**Electric Machinery II (OER - Open Educational Resources)**
+# Máquinas Elétricas II &nbsp; (REA - Recursos Educacionais Abertos)
+**Electric Machinery II &nbsp; (OER - Open Educational Resources)**
 
 &nbsp;
 ## Overview
@@ -10,8 +10,8 @@ This repository hosts open educational resources (OER) designed to support the E
 ## OER in this Repository
 
 The resources available in this repository include:
-- [📁 exercises]: &nbsp; Exercises and Industrial Application Problems that range from theoretical consolidation to industrial application of electrical machines;
-- [📁 lab-outlines]: &nbsp; Laboratory Assignment Outlines on experimental tests of electrical machines.
+- 📁 exercises: &nbsp; Exercises and Industrial Application Problems that range from theoretical consolidation to industrial application of electrical machines;
+- 📁 lab-outlines: &nbsp; Laboratory Assignment Outlines on experimental tests of electrical machines.
 
 \
 All materials are edited using **[Typst](https://typst.app/)** and provided as PDF output.
