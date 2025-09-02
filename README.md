@@ -13,10 +13,13 @@ The resources available in this repository include:
 - [📁 exercises] $\quad$ Exercises and Industrial Application Problems that range from theoretical consolidation to industrial application of electrical machines;
 - [📁 lab-outlines]  $\quad$  Laboratory Assignment Outlines on experimental tests of EM. electrical machines.
 
-All materials are edited using **[Typst](https://typst.app/)** and provided as PDF output. These are currently provided in Portuguese, with future plans to become bilingual (Portuguese/English).
+\
+All materials are edited using **[Typst](https://typst.app/)** and provided as PDF output.
+These are currently provided in Portuguese, with future plans to become bilingual (Portuguese/English).
 
-
-These materials are intended to assist students and educators in exploring topics covered in the Electric Machinery II curriculum. All resources are openly accessible under the principles of Open Educational Resources (OER).
+\
+These materials are intended to assist students and educators in exploring topics covered in the Electric Machinery II curriculum.
+All resources are openly accessible under the principles of Open Educational Resources (OER).
 
 &nbsp;
 ## Usage
