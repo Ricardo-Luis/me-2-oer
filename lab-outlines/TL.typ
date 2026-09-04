@@ -1,6 +1,6 @@
 #let autor = "Ricardo Luís"
 #let instituicao = "ISEL"
-#let ano = "2025"
+#let ano = "2026"
 #let titulo = "Enunciados dos Trabalhos Laboratoriais"
 #let subtitulo = "Máquinas Elétricas II"
 #let github_user = "Ricardo-Luis"
@@ -104,7 +104,7 @@
     ]
  ]
   
- #v(1.5cm)
+ #v(1cm)
   
  // Informação OER
  #set align(center)
@@ -113,20 +113,20 @@
  *RECURSO EDUCACIONAL ABERTO (REA)*\
  *OPEN EDUCATIONAL RESOURCE (OER)*
   
- #v(1cm)
+ #v(0.5cm)
 
 #set align(left)
   *Licença:* CC BY-SA 4.0 International\
   #link("https://creativecommons.org/licenses/by-sa/4.0/")
   
- #v(0.5cm)
+ #v(0.35cm)
 
 
 *Autor:* #autor\ 
 *Instituição:* #instituicao\
 *Ano:* #ano
   
-#v(0.5cm)
+#v(0.35cm)
 
 
   *Repositório GitHub:* #link(github_url)
@@ -134,25 +134,26 @@
   
   *Editor: * #link("https://typst.app")[Typst] (ficheiros fonte .typ disponíveis no repositório)
   
-  #v(1.5cm)
+  #v(1cm)
 
   // Secção sobre ferramentas de IA
   #set text(size: 11pt)
   
-*Ferramentas de inteligência artificial utilizadas:*\
+*Declaração de Utilização de Inteligência Artificial Generativa* \
 
-#h(0.5cm) • Perplexity AI: pesquisa de fontes e referências bibliográficas;
+O autor declara a delegação de tarefas específicas do processo de redação a ferramentas de inteligência artificial generativa, sob estrita supervisão humana, conforme estruturado abaixo:
 
-#h(0.5cm) • NotebookLM: organização de conteúdos a partir de pesquisa dirigida nos documentos fornecidos pelo autor;
+#h(0.5cm) • *Revisão da Literatura:* Foi delegada a tarefa de _Pesquisa e sistematização de literatura_ para o mapeamento e levantamento inicial de fontes bibliográficas.
 
-#h(0.5cm) • Claude (Anthropic):  revisão e aprimoramento do texto para maior fluidez e correção linguística.\
+#h(0.5cm) • *Gestão de Dados:* Foi delegada a tarefa de _Curadoria e organização de dados_ para a síntese, resumo e estruturação de conteúdos com base analítica restrita nos documentos fornecidos.
 
-\
-*Nota:* O autor assume inteira responsabilidade editorial e científica sobre o conteúdo apresentado.
-#v(1.5cm)
+#h(0.5cm) • *Escrita e Edição:* Foi delegada a tarefa de _Revisão e edição de texto_ para o aprimoramento da fluidez textual, correção gramatical e melhoria estilística do manuscrito.
+
+#v(0.5cm)
+*Nota de Responsabilidade:* O autor assume inteira responsabilidade editorial e científica sobre o conteúdo apresentado.
+#v(1cm)
 
 
-  
 // Secção de citação
   #set text(size: 12pt)
   
@@ -204,12 +205,13 @@
 
   No LME pretende-se um ambiente de experimentação colaborativa e de prática reflexiva. Nesse sentido, as aulas práticas são estruturadas para orientar os estudantes no trabalho em equipa durante a realização de ensaios experimentais, tendo como esteio as competências técnicas nos procedimentos de ensaio e de segurança. Promove-se a observação sistemática e a reflexão estruturada sobre os resultados obtidos, conduzindo os estudantes a analisar os dados recolhidos, a fundamentar-se nos conhecimentos teóricos, a decidir sobre ajustes nos procedimentos e executar as modificações necessárias.
   
-  Para tal, após a constituição dos grupos de trabalho no início do semestre, é necessária a consulta do documento "Planeamento das Aulas Práticas", que inclui:
+  Para tal, após a constituição dos grupos de trabalho no início do semestre, é necessária a consulta do documento "Planeamento das Aulas Práticas, Opções de Entrega de Relatórios e Calendário Semanal", que inclui:
 #set list(indent: 2cm)
-  - Calendarização semanal das atividades;
-  - Distribuição das bancadas de trabalho;
-  - Pré-requisitos para as aulas práticas;
-  - Informação sobre a entrega de relatórios.
+  - Plano de Trabalhos Laboratoriais %Calendarização semanal das atividades;
+  - Pré-requisitos e Preparação para as Aulas Práticas;
+  - Submissão de Relatórios via Moodle;
+  - Orientações sobre os Formatos de Submissão de Relatórios;
+  - Calendário Semanal das Aulas Práticas.
   #v(6pt)
   
   Cada enunciado de Trabalho Laboratorial (TL) está estruturado da seguinte forma:
@@ -227,7 +229,7 @@
 
   \
   
-  Lisboa, setembro de 2025
+  Lisboa, setembro de 2026
 #set align(right);
 Ricardo Luís
 
@@ -657,7 +659,7 @@ Após a conclusão do trabalho laboratorial, TL4 - Máquina Síncrona sobre Rede
 == Introdução
 #v(6pt)
 
-Este trabalho analisa o funcionamento da MST ligada a uma rede elétrica. Considera-se a rede elétrica de corrente alternada do laboratório de potência infinita, o que implica que a tensão e frequência constantes. Assim, nos ensaios TL4.1 e TL4.2 ajustam-se as potências ativa (alternador), mecânica (motor) e reativa (alternador/motor/compensador), considerando que a tensão da MST e a velocidade do rotor permanecem constantes. Essa estabilidade estática é garantida pelo acoplamento magnético entre o rotor e o campo girante, pois os enrolamentos do estator, ligados à rede elétrica, estão sob a mesma tensão e frequência.\
+Este trabalho analisa o funcionamento da MST ligada a uma rede elétrica podendo esta assumir três modos de operação: alternador, motor e compensador síncrono. Considera-se a rede elétrica de corrente alternada do laboratório de potência infinita, o que implica que a tensão e frequência constantes. Assim, nos ensaios TL4.1 e TL4.2 ajustam-se as potências ativa (alternador), mecânica (motor) e reativa (alternador/motor/compensador), considerando que a tensão da MST e a velocidade do rotor permanecem constantes. Essa estabilidade estática é garantida pelo acoplamento magnético entre o rotor e o campo girante, pois os enrolamentos do estator, ligados à rede elétrica, estão sob a mesma tensão e frequência.\
 No ensaio TL4.3, a rede elétrica é formada por alternadores em paralelo alimentando uma carga de carácter indutivo (RL), configurando uma rede elétrica isolada. Este ensaio procura responder a duas questões principais:
  - Como manter a tensão e a frequência constantes ao variar a carga ativa e/ou reativa, preservando a repartição de carga entre os alternadores?
  - Como ajustar a repartição de carga (ativa e reativa) entre os alternadores, mantendo constantes a tensão e a frequência?
@@ -677,9 +679,11 @@ No ensaio TL4.3, a rede elétrica é formada por alternadores em paralelo alimen
 #v(6pt)
 #heading(level:3, outlined: false, bookmarked: true)[TL4.2: Curvas de Mordey]
 #v(6pt)
-- Utilização da MST como motor acoplado a um gerador de corrente contínua (mais carga elétrica) para ensaio em carga no motor síncrono.
-- *Bancadas 2 e 3 (MST sem barras amortecedoras)*: preparar esquema e procedimento para ligação da MST à rede elétrica por meio de motor de arrasto.
-- *Bancadas 4 e 5 (MST com barras amortecedoras)*: preparar esquema e procedimento para ligação da MST à rede elétrica, utilizando as barras amortecedoras (arranque como motor de indução com auxílio de autotransformador).
+- Repetir o esquema de montagem de TL4.1 e o processo de sincronização com a rede elétrica;
+- Fixar a *Potência Ativa*: Para obter uma curva em V específica, a potência ativa fornecida pelo alternador à rede elétrica deve ser mantida constante. Esta condição é assegurada através da fixação da potência mecânica de entrada no veio do alternador;
+- *Variável ajustável*: A corrente de campo/excitação é modificada gradualmente;
+- *Curvas V*: Consistem no registo da *corrente de linha* em função da *corrente de campo*, mapeado de forma independente para cada nível de potência ativa constante.
+
 
 #v(6pt)
 #heading(level:3, outlined: false, bookmarked: true)[TL4.3: Paralelo de alternadores em rede isolada]
@@ -1011,11 +1015,11 @@ A Inteligência Artificial Generativa (GenAI) pode apoiar a redação e revisão
  - Pratique o pensamento crítico: confronte, questione e valide sempre os resultados.
 #v(6pt)
 - *Transparência*
- - Declare sempre o uso de GenAI, explicando como foi utilizada (ex.: revisão, resumo, verificação gramatical). Exemplos de declaração:
+ - Declare sempre o uso de GenAI, explicitando que tarefas lhe foram delegadas (ex.: revisão, resumo, verificação gramatical). Exemplos de declaração:
     
-  “A revisão linguística deste relatório foi apoiada por GenAI (ex.: ChatGPT, Gemini). O conteúdo final foi validado e é assumido pelos autores.”
+  “A revisão linguística deste relatório foi apoiada por GenAI. O conteúdo final foi validado e é assumido pelos autores.”
 
-  "Recorreu-se à GenAI (Claude) para esclarecimento de terminologia técnica. A interpretação dos resultados é da responsabilidade dos autores."
+  "Recorreu-se à GenAI para esclarecimento de terminologia técnica. A interpretação dos resultados é da responsabilidade dos autores."
   
  - Verifique e cite a informação obtida, recorrendo a fontes credíveis.
 #v(6pt)
