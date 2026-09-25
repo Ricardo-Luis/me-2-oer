@@ -207,7 +207,7 @@ O autor declara a delegação de tarefas específicas do processo de redação a
   
   Para tal, após a constituição dos grupos de trabalho no início do semestre, é necessária a consulta do documento "Planeamento das Aulas Práticas, Opções de Entrega de Relatórios e Calendário Semanal", que inclui:
 #set list(indent: 2cm)
-  - Plano de Trabalhos Laboratoriais %Calendarização semanal das atividades;
+  - Plano de Trabalhos Laboratoriais;
   - Pré-requisitos e Preparação para as Aulas Práticas;
   - Submissão de Relatórios via Moodle;
   - Orientações sobre os Formatos de Submissão de Relatórios;
@@ -541,9 +541,9 @@ O sistema Ward-Leonard permite obter um acionamento de velocidade variável com 
 
 Ao completar o trabalho laboratorial, TL3 - Alternador Síncrono Isolado, o estudante será capaz de:
 - Identificar e diferenciar alternadores síncronos de polos lisos e polos salientes;
-- Conceber e executar esquemas elétricos de Alternadores Síncronos Trifásicos (AST) em rede isolada;
-- Conduzir ensaios para determinação dos parâmetros do circuito equivalente por fase, em AST de polos lisos e de polos salientes;
-- Operar AST em rede isolada em condições variáveis de carga (corrente e $cos phi$):
+- Conceber e executar esquemas elétricos de Alternadores Síncronos (AS) trifásicos  em rede isolada;
+- Conduzir ensaios para determinação dos parâmetros do circuito equivalente por fase, em AS de polos lisos e de polos salientes;
+- Operar AS em rede isolada em condições variáveis de carga (corrente e $cos phi$):
   - levantar e interpretar características externas de funcionamento;
   - obter características de regulação de tensão;
   - compreender os mecanismos de regulação da tensão e da frequência. 
@@ -553,7 +553,7 @@ Ao completar o trabalho laboratorial, TL3 - Alternador Síncrono Isolado, o estu
 == Introdução
 #v(6pt)
 
-A análise em regime permanente de um AST a operar numa rede elétrica isolada baseia-se em duas ferramentas analíticas principais:
+A análise em regime permanente de um AS a operar numa rede elétrica isolada baseia-se em duas ferramentas analíticas principais:
 - *circuito equivalente por fase*;
 - *diagrama vetorial de tensões por fase*.
 
@@ -564,12 +564,12 @@ Para implementar estas ferramentas é necessária uma caracterização detalhada
 - Medição da resistência dos enrolamentos do estator.
 
 #v(12pt)
-Os ensaios do AST em carga variável com diferentes fatores de potência permitem extrair curvas características do seu funcionamento em rede elétrica isolada:
+Os ensaios do AS em carga variável com diferentes fatores de potência permitem extrair curvas características do seu funcionamento em rede elétrica isolada:
 
 - *Característica externa*: $U=upright(f)(I)$, com velocidade, $I_"exc"$ e $cos phi$ constantes;
 - *Característica de regulação da tensão*: $I_"exc"=upright(f)(I)$, com $U$, velocidade e $cos phi$ constantes.
 
-Estas curvas características permitem validar o(s) modelos considerado(s) para análise do comportamento do AST, para diferentes tipos de carga, comparando os resultados teóricos e experimentais.
+Estas curvas características permitem validar o(s) modelos considerado(s) para análise do comportamento do AS, para diferentes tipos de carga, comparando os resultados teóricos e experimentais.
 
 
 == Ensaios laboratoriais
@@ -584,7 +584,7 @@ Estas curvas características permitem validar o(s) modelos considerado(s) para 
 #v(6pt)
 #heading(level:3, outlined: false, bookmarked: true)[TL3.2: Características externas]
 #v(6pt)
-- Ensaios em carga do AST com cargas resistiva e reativa:
+- Ensaios em carga do AS com cargas resistiva e reativa:
  - obtenção das característica externas;
  - obtenção das características de regulação da tensão;
  - observação da regulação de tensão e frequência do alternador.
@@ -592,7 +592,7 @@ Estas curvas características permitem validar o(s) modelos considerado(s) para 
 
 == Sugestões de análise 
 #v(6pt)
-- Desenvolva o circuito equivalente por fase do AST usando o modelo de polos lisos e determine as características externas teóricas;
+- Desenvolva o circuito equivalente por fase do AS usando o modelo de polos lisos e determine as características externas teóricas;
 - Compare os resultados teóricos com as características externas obtidas experimentalmente;
 - Sob condições de corrente de carga constante e tensão nominal, elabore os diagramas vetoriais de tensões para diversos cenários de fator de potência;
 - Estabeleça a relação entre os diagramas vetoriais obtidos e as respetivas características de regulação da tensão, comparando e discutindo os resultados observados;
@@ -648,23 +648,23 @@ Estas curvas características permitem validar o(s) modelos considerado(s) para 
 #v(6pt)
 
 Após a conclusão do trabalho laboratorial, TL4 - Máquina Síncrona sobre Rede Elétrica, o estudante será capaz de:
-- Compreender as funções da Máquina Síncrona Trifásica (MST) na rede elétrica;
-- Elaborar e implementar esquemas de ligação da MST para operação na rede elétrica;
-- Executar os procedimentos de ligação da MST à rede elétrica e operá-la nos quatro quadrantes de funcionamento (como alternador, motor e compensador síncrono);
-- Obter experimentalmente e interpretar curvas V (curvas de Mordey) de uma MST;
+- Compreender as funções da Máquina Síncrona (MS) trifásica na rede elétrica;
+- Elaborar e implementar esquemas de ligação da MS para operação na rede elétrica;
+- Executar os procedimentos de ligação da MS à rede elétrica e operá-la nos quatro quadrantes de funcionamento (como alternador, motor e compensador síncrono);
+- Obter experimentalmente e interpretar curvas V (curvas de Mordey) de uma MS;
 - Associar e operar alternadores síncronos 3$tilde$ em paralelo numa rede elétrica isolada, garantindo a repartição de carga entre alternadores com tensão e frequência constantes;
-- Desenvolver e interpretar diagramas vetoriais de tensões da MST em rede elétrica sob diferentes condições de operação.
+- Desenvolver e interpretar diagramas vetoriais de tensões da MS em rede elétrica sob diferentes condições de operação.
 
 #v(12pt)
 == Introdução
 #v(6pt)
 
-Este trabalho analisa o funcionamento da MST ligada a uma rede elétrica podendo esta assumir três modos de operação: alternador, motor e compensador síncrono. Considera-se a rede elétrica de corrente alternada do laboratório de potência infinita, o que implica que a tensão e frequência constantes. Assim, nos ensaios TL4.1 e TL4.2 ajustam-se as potências ativa (alternador), mecânica (motor) e reativa (alternador/motor/compensador), considerando que a tensão da MST e a velocidade do rotor permanecem constantes. Essa estabilidade estática é garantida pelo acoplamento magnético entre o rotor e o campo girante, pois os enrolamentos do estator, ligados à rede elétrica, estão sob a mesma tensão e frequência.\
+Este trabalho analisa o funcionamento da MS ligada a uma rede elétrica podendo esta assumir três modos de operação: alternador, motor e compensador síncrono. Considera-se a rede elétrica de corrente alternada do laboratório de potência infinita, o que implica que a tensão e frequência constantes. Assim, nos ensaios TL4.1 e TL4.2 ajustam-se as potências ativa (alternador), mecânica (motor) e reativa (alternador/motor/compensador), considerando que a tensão da MS e a velocidade do rotor permanecem constantes. Essa estabilidade estática é garantida pelo acoplamento magnético entre o rotor e o campo girante, pois os enrolamentos do estator, ligados à rede elétrica, estão sob a mesma tensão e frequência.\
 No ensaio TL4.3, a rede elétrica é formada por alternadores em paralelo alimentando uma carga de carácter indutivo (RL), configurando uma rede elétrica isolada. Este ensaio procura responder a duas questões principais:
  - Como manter a tensão e a frequência constantes ao variar a carga ativa e/ou reativa, preservando a repartição de carga entre os alternadores?
  - Como ajustar a repartição de carga (ativa e reativa) entre os alternadores, mantendo constantes a tensão e a frequência?
  #v(6pt)
- O trabalho TL4 possibilita a compreensão prática e teórica da operação da MST em redes elétricas, capacitando o estudante a aplicar conceitos de sincronismo, gestão e repartição de carga em contextos reais de geração e operação de energia elétrica.
+ O trabalho TL4 possibilita a compreensão prática e teórica da operação da MS em redes elétricas, capacitando o estudante a aplicar conceitos de sincronismo, gestão e repartição de carga em contextos reais de geração e operação de energia elétrica.
 
 
 
@@ -674,7 +674,7 @@ No ensaio TL4.3, a rede elétrica é formada por alternadores em paralelo alimen
 #heading(level:3, outlined: false, bookmarked: true)[TL4.1: Ligação a rede elétrica e funcionamento nos 4 quadrantes]
 #v(6pt)
 - Sincronização do alternador com a rede elétrica;
-- Operação da MST nos quatro quadrantes de funcionamento, incluindo fator de potência unitário e atuação como compensador síncrono. 
+- Operação da MS nos quatro quadrantes de funcionamento, incluindo fator de potência unitário e atuação como compensador síncrono. 
 
 #v(6pt)
 #heading(level:3, outlined: false, bookmarked: true)[TL4.2: Curvas de Mordey]
@@ -697,12 +697,12 @@ No ensaio TL4.3, a rede elétrica é formada por alternadores em paralelo alimen
 #v(6pt)
 
 - Reflita sobre as condições de sincronização do alternador síncrono com a rede elétrica ou entre alternadores. Por exemplo, quais poderiam ser as implicações de sincronizar as tensões entre o alternador e a rede sem a verificar a sequência de fases? 
-- Elabore diagramas vetoriais simplificados para explicar a operação da MST nos quatro quadrantes, assumindo o modelo de polos lisos e resistência estatórica, $R approx 0$;
-- Utilize diagramas vetoriais da MST para verificar pontos de operação distintos nas curvas "V" da máquina;
-- Analise as curvas "V" da MST, interpretando-as nas componentes de potência ativa/mecânica, reativa e aparente;
+- Elabore diagramas vetoriais simplificados para explicar a operação da MS nos quatro quadrantes, assumindo o modelo de polos lisos e resistência estatórica, $R approx 0$;
+- Utilize diagramas vetoriais da MS para verificar pontos de operação distintos nas curvas "V" da máquina;
+- Analise as curvas "V" da MS, interpretando-as nas componentes de potência ativa/mecânica, reativa e aparente;
 - No paralelo de alternadores em rede isolada, analise os processos de regulação de tensão e frequência em resposta a variações de carga;
 - No paralelo de alternadores em rede isolada, avalie os processos de repartição de carga entre alternadores, mantendo constantes a tensão e frequência da rede isolada;
-- Analise o funcionamento da MST como compensador síncrono nos ensaios realizados.
+- Analise o funcionamento da MS como compensador síncrono nos ensaios realizados.
 
 
 
@@ -714,7 +714,7 @@ No ensaio TL4.3, a rede elétrica é formada por alternadores em paralelo alimen
   header: [
     #set text(9pt, font: "Source Code Pro")
     #upper()[ISEL\\LEE\\ME II]
-    #h(1fr) Enunciados TL
+    #h(1fr) Transitórios de Máquinas Elétricas
   ],
   numbering: none,
   footer: context [
@@ -1070,7 +1070,7 @@ A escrita técnica em engenharia exige clareza, rigor e organização. O uso de 
 // ============================================================================
 
 
-#pagebreak(to: "even")
+//#pagebreak(to: "even")
 
 
 
@@ -1080,7 +1080,8 @@ A escrita técnica em engenharia exige clareza, rigor e organização. O uso de 
   footer: context [],
 )
 
-
+#v(100%)    //forma expedita de colocar página em branco, sem estar numerado
+//verso-Prefácio|
 
 
 // Importar pacote para gerar QR codes
