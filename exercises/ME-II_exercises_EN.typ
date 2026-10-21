@@ -40,7 +40,7 @@
 #text(20pt, font: "Cantarell")[*#titulo*]
 
 #set align(center + bottom) 
-#text(10pt)[September #ano]
+#text(10pt)[October #ano]
 
 //COVER|
 
@@ -216,9 +216,9 @@ This collection of exercises and industrial application problems is organised in
 )
 #v(6pt)
 #h(1cm)
-This document presents exercises of a more conceptual nature alongside industrial application problems, allowing students to progress from fundamental concepts to practical situations encountered in industry. Each exercise or problem is numbered sequentially (Exercise 1, Exercise 2, ...), with its scope made clear by the context and problem statement itself.
+This document presents exercises of a more conceptual nature alongside industrial application problems, allowing students to progress from fundamental concepts to practical situations encountered in industry. In each chapter, the exercises or problems are numbered sequentially (Exercise 1, Exercise 2, ...), with their scope made clear by the context and problem statement itself.
 
-The odd-numbered exercises are fully worked through, while the even-numbered exercises are proposed as work items, with only the solutions given. The latter are primarily intended to be solved during theoretical-practical classes, adopting Problem-Based Learning as the teaching and learning methodology. In this way, discussion and critical analysis of the topics are encouraged, fostering the development of analytical thinking and problem-solving skills.
+The odd-numbered exercises are fully worked through, while the even-numbered exercises are proposed as work items, with only the numerical results given. The latter are primarily intended to be solved during theoretical-practical classes, adopting Problem-Based Learning as the teaching and learning methodology. In this way, discussion and critical analysis of the topics are encouraged, fostering the development of analytical thinking and problem-solving skills.
 
 Among the worked exercises, some are solved analytically as an introduction to, or consolidation of, key concepts, while others are solved using the scientific computing language #link("https://julialang.org/")[`Julia`], through computational documents (_notebooks_) developed using the integrated development environment #link("https://plutojl.org/")[`Pluto.jl`]. The use of interactive _notebooks_ allows students to deepen their understanding of fundamental theoretical concepts and to develop essential skills for professional practice. In addition, this exploratory practice allows students to apply their knowledge to solve exercises interactively, to visualise and analyse results graphically, and to gain practical experience with engineering tools.
 
@@ -419,7 +419,7 @@ Consider the armature of a four-pole DC generator with a lap winding placed in $
 
 #v(12pt)
   #rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
-    *Answers:* 
+    *Results:* 
 #set par(hanging-indent: 1cm)
     $T_d=14.26$~Nm #h(0.5cm) ; #h(0.5cm)$P_d=1.79$~kW
   ]
@@ -765,7 +765,7 @@ An armature winding of a dynamo has $z=640$~conductors, wound as a simple lap wi
 
 #v(12pt)
   #rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
-    *Answers:* 
+    *Results:* 
 #set par(hanging-indent: 1cm)
     *a)*#h(0.5em) $N_"EC"=14$ turns; #h(2em) $N_"PA"=6$ turns\
     *b)*#h(0.5em) $N_"EC"=28$ turns; #h(2em) $N_"PA"=12$ turns\
@@ -773,3 +773,713 @@ An armature winding of a dynamo has $z=640$~conductors, wound as a simple lap wi
 
 
   
+== Exercise 5
+#v(12pt) 
+#h(1cm)A separately-excited DC generator $[220" V, " 12" A," 1500" rpm"]$ was tested at no-load and under load, at rated speed, yielding the following characteristics:
+
+#align(center)[
+  #table(
+  columns: 7, stroke: none,
+  column-gutter: 4pt,
+  align: (right),
+  [$E_0$ [V]], [$20$], [$180$], [$238$], [$270$], [$284$], [$300$], [$i$ [A]], [$0.00$], [$0.25$], [$0.50$], [$0.75$], [$1.00$], [$1.50$]
+)]
+#v(6pt) 
+
+#align(center)[
+  #table(
+  columns: 10, stroke: none,
+  column-gutter: 4pt,
+  align: (right),
+  [$U$ [V]], [$278$], [$260$], [$242$], [$216$], [$186$],
+  [$156$], [$128$],[$96$],[$62$],[$I$ [A]], [$0$], [$5$], [$10$], [$15$], [$20$], [$25$], [$30$], [$35$], [$40$], 
+)]
+#v(6pt) 
+
++ Determine the total internal voltage drop of this generator;
+
++ What is the critical resistance of a shunt-excited generator? What is its significance? How is it determined (approximately) in practice?
+
++ What is the field winding resistance, given that, when operating as a shunt generator, at rated speed, with no field rheostat, $U_0=294$~V;
+
++ Explain qualitatively the influence that varying the field rheostat has on the external characteristic of the shunt generator. Justify briefly;
+
++ Under the excitation conditions of part c), what should be done to obtain a no-load voltage of $336$~V?
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 5:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/Separ.Shunt.GEN.html")[interactive notebook] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+
+== Exercise 6
+#v(12pt)
+#h(1cm)A shunt-excited generator has the following no-load (magnetisation) characteristic, at $1500$~rpm:
+
+#table(columns: 11, 
+  stroke: none, 
+  column-gutter: 12pt,
+  align: (right),
+  [$i$[A]], [$0$], [$0.1$], [$0.2$], [$0.3$], [$0.4$], [$0.6$], [$0.8$], [$1.0$], [$space.quad$], [$R_a=2.0 space Omega$],
+  [$E$[V]], [$20$], [$120$], [$200$], [$235$], [$250$], [$270$], [$285$], [$300$], [$space.quad space.quad$], [$R_d=300 space Omega$]
+)
+Consider that the generator is fitted with interpoles and compensating windings.
+#v(6pt) 
+
++ With the generator driven at $1500$~rpm, determine the value of the field rheostat to obtain the operating point $(35" A" semi  180" V")$;
+
++ Determine the generator drive speed required for the machine operate under the same conditions as in part a), without a field rheostat;
+
++ Under the conditions of part a) ($1500$~rpm and field rheostat), determine the equivalence ratio $(N_s slash N_d)$, to obtain the operating point  $(35" A" semi  " "200" V")$. Consider that the series field winding has a resistance of $0.5 space Omega$.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $​​150 space Omega$; #h(2em)
+    *b)*#h(0.5em) $1389$~rpm; #h(2em)
+    *c)*#h(0.5em) $​​0.39 slash 35$ #h(2em) 
+  ]
+
+
+== Exercise 7
+#v(12pt)
+#h(1cm)A long-shunt compound generator, with cumulative (additive) series field flux, has the following characteristics:
+
+#table(columns: 5, column-gutter: 10pt,stroke: none, align: left,
+[$P=8.75$~kW], [$U=250$~V], [$R_d=223 space Omega$], [$R_a=1.3 space Omega$], [$R_s=0.1 space Omega$], 
+[$n=1500$~rpm], [$n_("mag")=1500$~rpm], [$N_d=2000$ turns], [$N_s=50$ turns], [$E_0=$ f$(I_"exc")$:]
+)
+
+
+#align(center)[
+  #table(columns: 12, column-gutter: 10pt,
+stroke: none,
+align: right,
+[$I_"exc"$ [A]], [$0.0$], [$0.2$], [$0.4$], [$0.6$], [$0.8$], [$0.9$], [$1.0$], [$1.1$], [$1.3$], [$1.5$], [$1.7$], 
+[$E_0$ [V]], [$15$], [$100$], [$170$], [$220$], [$250$], [$260$], [$270$], [$280$], [$290$], [$300$], [$310$]
+)
+]
+
+
+#v(6pt)
+Also consider a switch connected in parallel with the series field winding, as show in the following electric diagram:
+
+
+#figure(image("/images/Compound_Dynamo.png", width: 44%))
+
+#v(6pt) 
+
++ Calculate the no-load voltage with no field rheostat. Explain whether the state of the switch influences the generator no-load voltage;
+
++ With the switch open, calculate the voltage drop due to the armature reaction, knowing that flat (level) regulation is obtained under rated conditions;
+
++ With the switch closed, explain qualitatively the generator external characteristic. What is the variation of the operating point on the external characteristic, for a given load resistance, in the following situations:
+
+  + an increase in drive speed;
+
+  + a decrease in the shunt-field rheostat.
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 7:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/Compound.GEN.html")[interactive notebook] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+
+
+== Exercise 8
+#v(12pt)
+#h(1cm)Consider a series generator with $5$ turns$slash$pole, whose magnetisation characteristic passes through the following points, at $1200$~rpm:
+
+#align(center)[
+  #table(columns: 5, column-gutter: 20pt,
+stroke: none,
+align: right,
+[$\u{02131}$~[Ae]], [$0$], [$200$], [$600$], [$1000$], 
+[$E_0$~[V]], [$5$], [$120$], [$160$], [$170$]
+)
+]
+
+It is known that the rotational losses are $1200$~W, $R_a=0.2 space Omega$ and $R_s=0.05 space Omega$.
+#v(6pt) 
+
++ Determine the voltage drop due to the armature reaction, when supplying a $1 space Omega$ load, at $120$~A;
+
++ Consider that the armature reaction results in a flux loss of $5space.thin %$. Will it be possible to obtain a voltage of $150$~V, at the same current? Justify;
+
++ An attempt was made to operate this series dynamo on a $3 space Omega$ load, but this was not possible. Comment on the situation;
+
++ Determine the current value corresponding to maximum efficiency.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $​​10$~V ; #h(2em)
+    *d)*#h(0.5em) $69.3$~A
+  ]
+
+\
+== Exercise 9
+#v(12pt)
+#h(1cm)The external characteristics of two shunt-excited dynamos, rated at $220$~V, $110$~kW, and connected in parallel, are known:
+
+#align(center)[
+  #table(columns: 7, column-gutter: 24pt,
+stroke: none,
+align: right,
+[$I$ [A]], [$0$], [$200$], [$400$], [$500$],  [$700$], [$900$], 
+[$U_1$ [V]], [$229.5$], [$226.5$], [$222.5$], [$220.0$], [$213.0$], [$205.5$],
+[$U_2$ [V]], [$224.0$], [$223.0$], [$221.0$], [$220.0$], [$217.5$], [$214.0$]
+)
+]
+
+#v(6pt) 
+
++ How would the two machines share a current of $1500$~A? What is the voltage?
+
++ What happens for small loads, close to zero? $0 < I <250$~A
+
++ Complete: \ #h(0.5cm) “Under overload, the machine with $"________________"$ regulation supplies $"________________"$ current”.
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 9:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/Parallel.GEN.html")[interactive notebook] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+
+
+== Exercise 10
+#v(12pt)
+#h(1cm)Two identical shunt-excited dynamos have the following magnetisation characteristic at $1500$~rpm: 
+
+#align(center)[#table(
+  columns: 6, 
+  stroke: none, 
+  column-gutter: 18pt,
+  align: (right),
+  [$i$~[A]], [$0.0$], [$0.2$], [$0.6$], [$1.0$], [$1.4$], [$E$~[V]], [$20$], [$200$], [$220$], [$240$], [$260$],
+)]
+
+#h(1cm)The armature resistance is $0.4 space Omega$ and the field winding resistance is $150 space Omega$; each also has a field rheostat connected, with a maximum value of $300 space Omega$.
+
+The two machines are connected in parallel, supplying a load $(100" A," 200" V")$, with *dynamo~A* running at $1500$~rpm.
+
+#v(6pt) 
+
++ Initially *dynamo~B* is unloaded. Determine the field rheostat of *dynamo~A*;
++ Determine the short-circuit current of *dynamo~A*;
++ *Dynamo~A* supplies $75$~A of the total load. How should one proceed so that *dynamo B* supplies the rest? Show the calculations.
+
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $​​R_f^"A"=50 space Omega$ ; #h(2em)
+    *b)*#h(0.5em) $50$~A \  
+    *c)*#h(0.5em) Adjusting only on the field rheostat results in $R_f^"B" > R_f^"máx"$, so the speed must also be adjusted. For example, considering $R_f^"B"=50 space Omega$, $1312.5$~rpm is obtained.
+    ]
+
+== Exercise 11
+#v(12pt)
+
+#h(1cm)Consider a shunt generator driven at constant speed, supplying a load resistance $R_u=7 space Omega$.
+A lead-acid battery is occasionally connected to this circuit for charging, according to the following electrical circuit:
+
+#figure(image("/images/battery.png", width: 55%))
+
+External characteristic of the generator:
+#align(center)[#table(
+  columns: 8, 
+  stroke: none, 
+  column-gutter: 18pt,
+  align: (right),
+  [$I_G$~[A]], [$0.0$], [$10$], [$20$], [$30$], [$40$], [$50$],[$60$], [$U_G$~[V]], [$312$], [$300$], [$284$], [$262$], [$234$], [$200$], [$160$]
+)]
+
+#h(1cm)The battery consists of $100$ cells in series and is charged whenever its SOC (State Of Charge) reaches $25space.thin %$ (approximately $1.95$~V/cell). The internal resistance of each battery cell is $8$~m$Omega$. 
+
+Determine the operating voltage of the circuit when the battery is connected (generator + load $R_u$), the generator current, $I_G$, the current in the load, $I_u$, and the initial battery charging current, $I_b$. 
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%, height: 23%, stroke: (left: 0.25em))[
+    *Worked solution:* 
+#set par(hanging-indent: 1cm)
+
+The battery open-circuit voltage, $E_b$, for SOC$=25space.thin %$, is given by:\
+
+#h(1cm) $E_b=100 times 1.95=195$~V
+
+The internal resistance of the battery, $R_b$, with its cells in series:
+
+#h(1cm) $R_b=100 times 8times 10^"-3"=0.8 space Omega$
+
+The battery charging equation, $U_b="f"thin (I_b)$, is given by:
+
+#h(1cm)$U_b=E_b+R_b 
+ thin I_b  space <=> space U_b=195+0.8 
+ thin I_b$
+
+ ]
+
+#rect(fill: luma(240), width: 100%, height: 100%, stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+#v(6pt)
+#h(1cm)The following graph shows:
+
+#set list(marker: [--],indent: 2cm)
+
+- the generator external characteristic, $U_G="f" thin (I_G)$
+- the load-resistor line, $U_u="f" thin (I_u)$
+- the battery charging line, $U_b="f"thin (I_b)$
+
+#v(6pt)
+
+#h(1cm)The generator loads (the load resistor and the battery) must be combined in order to determine the operating point of the generator and of the loads.
+
+
+#figure(image("/images/battery_graph1.svg", width: 80%))
+
+#v(6pt)
+#h(1cm)The combined load must reflect the operation of the circuit, that is:
+
+#set list(marker: [--], indent: 2cm)
+
+- the voltages across each branch are equal: #h(0.5cm)$U=U_G=U_u=U_b$
+- the generator supplies the load resistor and the battery: #h(0.5cm)$I=I_G approx I_u+I_b$
+
+#v(6pt)
+#h(1cm)*Note:* The generator field current, $I_d$, is much smaller than the generator armature current and the load currents, so it is neglected in the graph:
+
+#h(1cm)$I_d << {I_b, I_u, I_G}$ 
+
+#v(12pt)
+The following graph illustrates the graphical determination of the combined load characteristic, $U_c="f" space(I)$, with $I=I_b+I_u$, corresponding to the combined loads. Since the sum of two straight lines is another straight line, only $2$ voltage levels need to be considered to obtain $2$ points on the combined load characteristic. Thus:
+
+]
+
+  #rect(fill: luma(240), width: 100%, height: 100%, stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+
+#set list(marker: [--], indent: 2cm, spacing: 16pt)
+
+- the green point was obtained by choosing the voltage level corresponding to the battery being disconnected, i.e. $E_b$. In this situation, $I_b=0$ and therefore $I=I_u$
+- the red point was obtained by choosing the voltage level at which the load-resistor and battery lines intersect, i.e. $I_u=I_b$. At this voltage level, the red point is placed at the abscissa corresponding to twice the current.
+
+#v(10pt)
+#h(1cm)Joining the points (green and red) gives the combined load characteristic:
+
+#h(1cm)$U_c="f" space(I)$
+
+
+#figure(image("/images/battery_graph2.svg", width: 74%))
+
+#v(6pt)
+#h(1cm)The intersection of the combined load characteristic with the external characteristic of the DC generator
+defines the operating point of the circuit: $(I_G; U)=(47.4space.thin"A"; 209space.thin"V")$.
+
+#figure(image("/images/battery_graph3.svg", width: 74%))
+
+]
+
+#rect(fill: luma(240), width: 100%, height: 45%, stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+#v(6pt)
+#h(1cm)On the other hand, from the operating voltage, $U=209$~V, the load lines of the load resistance and of the battery are consulted to obtain the respective current values, $I_u$ and $I_b$, supplied by the generator:
+
+#h(1cm)$I_u=29.9$~A
+#h(1cm) ; #h(1cm)$I_b=17.5$~A
+
+
+#v(6pt)
+As an alternative to the graphical determination of the combined load characteristic, since it corresponds to the sum of two straight lines, it can be determined analytically. Given that:
+#v(6pt)
+#h(1cm)
+$U_c=U_b=U_u$~~ and that ~~$I=I_b+I_u$~~ then:
+#v(10pt)
+#h(1cm)$I=display((U_c-E_b) / R_b + display(U_c) / R_u)$
+
+#v(10pt)
+Rearranging the previous equation the combined load line (load resistance + battery), $quad quad U_c="f" space(I)$:
+
+#v(6pt)
+#h(1cm)$U_c = display((R_u) /(R_u+R_b) E_b + display((R_u R_b) /(R_u+R_b)) I)$
+
+]
+
+ == Exercise 12
+#v(12pt)
+#h(1cm)A series motor with an armature resistance of $0.8 space Omega$ and a field winding resistance of $0.4 space Omega$ was run as a dynamo:
+
+#set list(marker: [--], indent: 1cm)
+
+- Separately excited at $50$~A and driven at $1500$~rpm, it produced $230$~V at the open-circuit terminals; 
+- With series excitation, delivering $50$~A at the same speed, it produced $150$~V.
+#v(6pt)
+Knowing that the mechanical and magnetic losses, $p_("(mec+Fe)")$, are $400$~W, calculate:
+
+#v(6pt) 
+
++ The speed when it draws $50$~A as a series motor from a $220$~V supply;
+
++ The mechanical torque it delivers to the load under these conditions;
+
++ Sketch qualitatively the torque and speed characteristics of this motor. Explain the effect of introducing a field rheostat on these characteristics.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $1174$~rpm ; #h(2em)
+    *b)*#h(0.5em) $61.8$~Nm
+    ]
+
+
+#v(30%)
+== Exercise 13
+#v(12pt)
+#h(1cm)Consider a DC motor with the following nameplate ratings: $17$~kW, $250$~V, $1200$~rpm, $eta=85space.thin%$.
+
+#table(columns: 2, column-gutter: 6pt, stroke: none, align: left,
+[The following parameters are also known:], table.cell(rowspan: 6)[#image("/images/noLoad.png", width: 103%)], 
+[],
+[$E_0=f(I_("exc")) space space$, ~$n=1200$~rpm],
+[$R_a=0.6 space Omega$],[$R_s=0.1 space Omega space.quad$, ~$30$~ turns],
+[$R_d=200 space Omega space.quad$, ~$3000$ turns]
+)
+
+#v(6pt) 
+
++ With the motor shunt-excited, determine the value of the field rheostat under rated conditions $(U_n, I_n, n_n)$;
+
++ Using the field rheostat calculated in the previous part, determine the speed, torque and mechanical characteristics of this motor (shunt excitation);
+
++ Repeat for cumulative and differential compound, long-shunt excitation. Plot the characteristics on the same graphs for comparison;
+
++ Determine the characteristic curves with the shunt circuit disconnected (series motor). Plot the characteristics on the same graphs for comparison;
+
++ Consider the motor with separate excitation, $U_("exc")=240$~V, with the field rheostat calculated in part a). Explain how the  speed characteristic changes in the following situations:
+
+  + an increase in armature voltage;
+  + a decrease in the field rheostat;
+  + an increase in the additional resistance.
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 13:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/DCmotors.html")[interactive notebook] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+
+== Exercise 14
+#v(12pt) 
+#h(1cm) A shunt-excited motor has the following characteristics:
+
+#table(columns: 6, align: left, column-gutter: 26pt, stroke: none,
+[], [], [$U_n=220$~V], [$I_n=42$~A], [$n_n=1500$~rpm], [$R_a=0.34 space Omega$]
+)
+
+#v(6pt) 
+
++ In the no-load test the following values were obtained: #table(columns: 5, align: left, column-gutter: 26pt, stroke: none,
+[], [$U=220$~V], [$n=1600$~rpm], [$I_a=3$~A], [$I=4.6$~A]
+) Calculate the loss torque;
+
++ Obtain the speed equation, $n="f"space(I_a)$ ;
+
++ Size a stepped starting rheostat such that: $40$~A $<= I_("start")<=65$~A .
+
+#v(12pt)
+  #rect(fill: luma(240), height: 9.5%, width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $3.92$~Nm #h(2em)
+    *b)*#h(0.5em) $n("rpm")=display(frac( hyph 100, 37.4))(I_a-3)+1600$ 
+    
+    *c)*#h(0.5em) Resistances between the 6 contacts $(Omega)$: $1.30$; $0.80$; $0.49$; $0.30$; $0.15$. Rheostat: $3.04space Omega$ .
+    ]
+
+
+== Exercise 15
+#v(12pt) 
+#h(1cm)A series motor rated at $12$~kW, $250$~V, $1400$~rpm, with an efficiency of $80space.thin%$ and a maximum speed of $2400$~rpm, has the following magnetic characteristic obtained at $1500$~rpm:
+
+#align(center)[
+  #table(columns: 9, column-gutter: 12pt,
+stroke: none,
+align: right,
+[$I_("exc")$ (A)], [$10$], [$20$], [$30$], [$40$],  [$50$], [$60$], [$70$], [$80$],
+[$E_0$ (V)], [$80$], [$140$], [$190$], [$225$], [$250$], [$270$], [$285$], [$295$]
+)
+]
+
+Knowing that the armature resistance is $0.35space Omega$ and the field resistance is $0.1space Omega$, calculate:
+#v(6pt) 
++ The mechanical and iron losses, $p_"(mec+Fe)"$;
+
++ The minimum current the motor can draw;
+
++ The voltage drop due to armature reaction at full load;
+
++ The motor power corresponding to maximum efficiency;
+
++  Explain qualitatively the effect of the field rheostat on the speed characteristic of the series motor;
+
++ Explain qualitatively the effect of the field rheostat on the torque characteristic of the series motor.
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 15:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/SeriesMotor.html")[interactive notebook] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+== Exercise 16
+#v(12pt) 
+#h(1cm) A series motor supplied at $250$~V has an armature resistance of $0.2space Omega$ and a field winding resistance of $0.15space Omega$. This field winding has a field rheostat of $0.1space Omega$ fitted with a switch.
+#v(6pt) 
+
++ Assume the switch is open. Under these conditions, the motor delivers a shaft torque of $25$~Nm, running at $800$~rpm and drawing a current of $10$~A.\ Calculate the efficiency, $eta space (%)$, the electromagnetic torque, $T_d$, and the mechanical and magnetic losses, $p_"(mec+Fe)"$;
+
++ Assume the switch is closed. What are the new values of current drawn and speed when the electromagnetic torque doubles? State the assumptions made;
+
++ Sketch qualitatively the shaft torque characteristic of this motor. Explain what happens to it when the supply voltage is varied. Justify.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $83.8space.thin%$ ; $space.quad 29.4$~Nm ; $space.quad 370.6$~W #h(2em)
+    *b)*#h(0.5em) $22.4$~A ; $space.quad 888$~~rpm
+    ]
+
+
+== Exercise 17
+#v(12pt) 
+#h(1cm) A shunt motor with the following nameplate ratings: $45$~kW, $500$~V, $100$~A, $1600$~rpm, has an armature resistance of $0.33$~$Omega$ and will use reverse current braking (plugging), from its rated operating condition.
+
+#v(6pt)
+Knowing that the initial braking current must be limited to $150$~A, calculate:
+
+#v(6pt) 
+
++ The useful (shaft) torque, $T_u$, and the back electromotive force, $E'$, at full load;
+
++ The value of the braking resistance;
+
++ Analyse qualitatively the torque developed at the instant the motor stops. What happens from that instant onwards?
+
++ Consider dynamic (rheostatic) braking. Calculate the initial braking current using the braking resistance found above, starting from the rated operating condition.
+
+
+#v(12pt)
+  #rect(fill: luma(240), height: 90%, width: 100%,stroke: (left: 0.25em))[
+    *Worked solution:* 
+#set par(hanging-indent: 1cm)
+
+*a)*#h(0.5em) The shaft torque is obtained from the nameplate ratings:
+
+#h(1cm)$T_u = display(P_u) / (display(2 thin pi thin n_n) / display(60))=display(45thin 000)/(display(2 thin pi thin 1600) / display(60))=268.6$~Nm
+
+#v(6pt)
+Calculation of $E'$:
+#h(1cm)$E'=U-R_a thin I_n=500-0.33 times 100=467$~V
+
+#v(12pt)
+*b)*#h(0.5em) The following figure shows the circuit diagram of the shunt motor fitted with a DPDT (Double Pole, Double Throw) switch for the *reverse current braking (plugging)* manoeuvre: 
+
+#figure(image("/images/MshuntDPDT.png", width: 76%), gap:16pt) 
+
+#v(6pt)
+#h(1cm) When the DPDT switches to perform reverse current braking (position 2), the negative armature terminal is connected to the positive terminal of the DC supply, while the positive motor terminal is connected to the negative terminal of the supply through a braking resistance, $R_"brk"$.
+
+Thus, going round the power loop, the following equation is obtained:
+
+#h(1cm) $-U-E'+(R_a + R_"brk") thin I_"brk"=0 quad => quad I_"brk"=display(U+E')/ display(R_a + R_"brk")$
+
+#v(6pt)
+Note that the braking current, $I_"brk"$, flows in the opposite direction to the motor current with the DPDT in position 1. Therefore, the torque developed during braking opposes the rotor motion, forcing the speed, $omega$, to decrease.
+
+As the speed, $omega$, decreases, the back electromotive force, $E'$, decreases and consequently the current and the torque during the DC motor braking operation also decrease. 
+
+
+Rearranging the previous expression to obtain the braking resistance, $R_"brk"$, gives:
+
+
+#h(1cm)$R_"brk"=display(U+E')/ display(I_"brk")-R_a=display(500+467)/ display(150)-0.33=6.12space Omega$
+
+]
+
+#v(12pt)
+  #rect(fill: luma(240), height: 100%, width: 100%,stroke: (left: 0.25em))[
+    
+#set par(hanging-indent: 1cm)
+
+
+
+*c)*#h(0.5em) Relating the developed torque, $T_d$, to the speed, $omega$, we obtain successively:
+
+#h(1cm) $T_d=K thin phi.alt thin I_a quad$
+
+Particularising for the torque developed during braking, $T_d_"brk"$, considering $I_"brk"$:
+
+#h(1cm) $T_d_"brk"= K thin phi.alt thin(display(U+E')/ display(R_a + R_"brk")) wide$ since: $wide E'= K thin phi.alt thin omega$
+
+#v(12pt)
+#h(1cm) $T_d_"brk"= display(K thin phi.alt thin U)/ display(R_a + R_"brk") + display( (K thin phi.alt)^2 thin omega)/ display(R_a + R_"brk") quad$, when: $quad omega=0 space => space T_d_"brk"= display(K thin phi.alt thin U)/ display(R_a + R_"brk")$
+
+#v(6pt)
+Analysing the previous expression, the second term decreases during the braking manoeuvre until it becomes zero when: $omega=0$.
+
+However, the first term remains constant. Therefore, immediately after the speed reaches zero, if no action is taken, the motor starts will start rotating in the opposite direction. An automatic control must therefore disconnect the motor from the DC supply as soon as its speed reaches zero.
+
+#v(12pt)
+*d)*#h(0.5em) *Dynamic (or rheostatic) braking* consists of disconnecting the motor armature circuit from the DC supply and connecting it across a braking resistance. The DC machine will now operate as a separately excited generator (constant flux) supplying the braking resistance. Since there is no prime mover driving the "generator", the speed falls sharply within a few moments.
+
+The electrical diagram in the following figure uses an SPDT (_Single Pole, Double Throw_) switch for the dynamic braking manoeuvre:
+
+#figure(image("/images/MshuntSPDT.png", width: 76%), gap:16pt) 
+
+#h(1cm)Analysing the flow of the braking current (with the SPDT switch in position $2$), at the start of the braking operation, we obtain:
+
+#h(1cm)$I_"brk"=display(E')/ display(R_a+R_"brk")= display(467)/ display(0.33+6.12)=72.4$~A
+
+
+]    
+    
+
+== Exercise 18
+#v(12pt) 
+#h(1cm) A separately excited DC motor, $10$~kW, $250$~V, with an efficiency of $88space.thin%$, is supplied by a Ward Leonard system, shown in the following schematic
+diagram of its operating principle:
+
+#figure(image("/images/WardLeonard_ex14.png", width: 70%), )
+
+The magnetisation characteristics of the generator and the motor, obtained at $1200$~rpm, are known:
+
+
+#table(columns: 12, rows: 2, align: center + horizon, column-gutter: 4.5pt, stroke: none, table.hline(start:0, end: 12, stroke: 0.5pt), table.vline(start: 0, end: 2, stroke: 0.5pt), table.vline(x: 12, start: 0, stroke: 0.5pt),
+underline[Generator:], [], [$i($A$)$], [$0.0$], [$0.4$], [$0.8$], [$1.2$], [$1.6$], [$2.0$], [], [$R_a=0.8space.thin Omega$], [$R_d=120space.thin Omega$], [], [], [$E($V$)$], [$12$], [$110$],[$200$],[$260$],[$290$],[$310$], [], [$U_("exc")=240$~V], [$Delta E=0$~V], table.hline(start:0, end: 12, stroke: 0.5pt)
+)
+
+#table(columns: 12, rows: 2, align: center + horizon, column-gutter: 7.7pt, stroke: none, table.hline(start:0, end: 12, stroke: 0.5pt), table.vline(start: 0, end: 2, stroke: 0.5pt), table.vline(x: 12, start: 0, stroke: 0.5pt),
+underline[Motor:], [], [$i($A$)$], [$0.0$], [$0.4$], [$0.8$], [$1.2$], [$1.6$], [], [], [$R_a=1.6space.thin Omega$], [$R_d=150space.thin Omega$], [], [], [$E($V$)$], [$10$], [$105$],[$190$],[$240$],[$265$],[], [], [$U_("exc")=240$~V], [$Delta E=0$~V], table.hline(start:0, end: 12, stroke: 0.5pt)
+)
+#v(12pt) 
+
++  Calculate the motor speed and the electromagnetic torque at full load, with:\ $R_f^" gen"=180space.thin Omega$ and $R_f^" mot"=50space.thin Omega$ ;  
+
++ Using the Ward Leonard system, adjust the motor speed to $1100$~rpm at half load. Calculate the value of the field rheostat for this condition;
+
++ When the generator field current reaches its maximum value, how can the speed of the DC motor be increased? Justify;
+
++ State the advantages of replacing the Ward Leonard system with an electronic variable-speed drive.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Results:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $455$~rpm ; $space.quad 87$~Nm #h(2em)
+    *b)*#h(0.5em) $53space.thin Omega$
+    ]
+
+\
+\
+== Exercise 19
+#v(12pt) 
+#h(1cm) Consider a DC motor supplied from an electronic Ward-Leonard system, as shown in the following figure:
+
+
+#table(columns: 2, rows: 13, column-gutter: 6pt, stroke: none, align: (center, left),  table.cell(rowspan: 13, [#image("/images/WardLeonard_ex15.png", width: 80%)], align: center), [],[],[$P_n=5$~kW],[],[],[$T_n=30$~Nm],[],[],[$I_n=40$~A],[],[],[$R_a=0.8space.thin Omega$]
+)
+
+The magnetisation characteristic of the machine, obtained at $2000$~rpm, is also known:
+
+#align(center)[
+  #table(columns: 8, column-gutter: 12pt,
+stroke: none,
+align: right,
+[$I_f$ (A)], [$0$], [$0.25$], [$0.50$], [$0.75$],  [$1.00$], [$1.25$], [$1.50$], 
+[$E_0$ (V)], [$20$], [$160$], [$210$], [$235$], [$250$], [$260$], [$265$])
+]
+
++ Determine the voltage applied to the motor armature under rated conditions;
+
++ Consider the motor operating under the following conditions: $U_a=195$~V; $n=1400$~rpm. Now suppose that, using the "Speed reference" command of the electronic variable-speed drive, the armature voltage is suddenly changed to $155$~V. Calculate the machine current at the immediately after the change. What has happened? Justify.
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 30%, width: 100%,stroke: (left: 0.25em))[
+    *Worked solution:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) Using the rated values provided, the rated speed is obtained from:
+
+#h(1cm)$omega=display(P_n/T_n) quad$ combined with: $quad omega=display(2 thin pi thin n) / display(60) quad$, we have: 
+#v(10pt)
+#h(1cm)$n=display(P_n/T_n) thin display(60/(2 thin pi))=display(5000/30) thin display(60/(2 thin pi))=1592$~rpm
+
+#v(12pt)
+On the other hand, for $I_f=1$~A $=> space K thin phi.alt=display(250/2000)$~V$\/$rpm
+
+#v(12pt)
+
+Using the speed equation:
+$quad n=display(U_a-R_a thin I_n) / display(K thin phi.alt) quad$, with: $quad Delta E=0 space$, we obtain:
+#v(6pt)
+#h(1cm)$1592=display(U_a-0.8 times 40) / display(250\/2000) quad => space U_a= 231$~V
+
+]
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 50%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+    #h(1cm)*b)*#h(0.5em) For the specified conditions: $U_a=195$~V; $n=1400$~rpm, the motor operating current, $I$, is:
+#v(6pt)  
+#h(1cm)$n=display(U_a-R_a thin I) / display(K thin phi.alt) space <=> space 1400=display(195-0.8 thin I) / display(250\/2000) space => I=25$~A
+
+#v(12pt) 
+When the supply voltage changes suddenly, $(U_a=195$~V $->155$~V$)$, the speed still remains the same (slow dynamics of a mechanical system _vs._ an electrical system), and the current changes to a new value, given by $I'$:
+#v(6pt)  
+#h(1cm)$n=display(U_a-R_a thin I') / display(K thin phi.alt) space <=> space 1400=display(155-0.8 thin I') / display(250\/2000) space => I'=-25$~A
+
+#v(12pt) 
+With the sudden change in voltage, $U_a$, the back electromotive force becomes $E'>U_a$, reversing the direction of the current. In other words, a braking process has started, in which the current, $I'$, will follow the evolution of $E'$, being restored to its previous value, $(I=25$~A$)$, once the speed stabilises.
+
+If the electronic variable-speed drive supports bidirectional current, *regenerative braking* occurs: the current is returned to the electrical supply during the braking as long as $space E'>U_a$.
+
+  ]
+
+
+#v(5%)
+
+== Bibliography
+
+\
+#list(indent: 1cm,
+  [[Guru & Hiziroğlu, 2003]: Bhag S. Guru, Hüseyin R. Hiziroğlu, Electric Machinery and Transformers, 3#super("rd") Ed., Oxford University Press, 2003.]
+)
+  
+
+
+ 
