@@ -15,7 +15,7 @@ The resources available in this repository include:
 
 \
 All materials are edited using **[Typst](https://typst.app/)** and provided as PDF output.
-These are currently provided in Portuguese, with future plans to become bilingual (Portuguese/English).
+These are currently provided in a bilingual format (Portuguese/English).
 
 \
 These materials are intended to assist students and educators in exploring topics covered in the Electric Machinery II curriculum.
