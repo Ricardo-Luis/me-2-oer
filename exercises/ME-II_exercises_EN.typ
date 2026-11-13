@@ -7,7 +7,7 @@
 #let github_repo = "me-2-oer"
 #let github_subpath = "/tree/main/exercises"
 #let github_raw_subpath = "/raw/main/exercises"
-#let github_pdf_file = "ME-II_exercises.pdf"
+#let github_pdf_file = "ME-II_exercises_EN.pdf"
 #let github_url = "https://github.com/" + github_user + "/" + github_repo + github_subpath
 #let github_download = "https://github.com/" + github_user + "/" + github_repo + github_raw_subpath + "/" + github_pdf_file
 
@@ -40,7 +40,7 @@
 #text(20pt, font: "Cantarell")[*#titulo*]
 
 #set align(center + bottom) 
-#text(10pt)[October #ano]
+#text(10pt)[November #ano]
 
 //COVER|
 
@@ -149,7 +149,7 @@
 
 *AI Use Declaration:*
 
-Artificial intelligence (AI) was used as a delegated tool to assist with the translation of this document from European Portuguese (PT-PT) into British English (EN-UK). The AI-generated translation was critically reviewed, edited and validated by the author, who retains full responsibility for the accuracy and final content of the translated text.
+Artificial intelligence (AI) was used as a delegated tool to assist with the translation of this document from European Portuguese (PT-PT) into British English (EN-GB). The AI-generated translation was critically reviewed, edited and validated by the author, who retains full responsibility for the accuracy and final content of the translated text.
 
   #v(1.5cm)
   
@@ -1471,7 +1471,380 @@ If the electronic variable-speed drive supports bidirectional current, *regenera
   ]
 
 
-#v(5%)
+#pagebreak()
+
+
+== Worked solution to an assessment test
+\
+#align(center)[*1st Test – 29 October 2026*]
+
+#let recortar-pdf(path, topo: 0pt, base: 0pt, esq: 0pt, dir: 0pt, escala: 100%, ..args) = layout(size => {
+  let img = image(path, ..args)
+  let s = measure(img, ..size)
+  let r(v, ref) = if type(v) == ratio { ref * v } else { v }
+  let t = r(topo, s.height)
+  let b = r(base, s.height)
+  let e = r(esq, s.width)
+  let d = r(dir, s.width)
+  scale(escala, origin: top + left, reflow: true,
+    block(
+      width: s.width - e - d,
+      height: s.height - t - b,
+      clip: true,
+      move(dx: -e, dy: -t, box(width: s.width, height: s.height, img)),
+    ),
+  )
+})
+
+#recortar-pdf("images/T1_EN.pdf", topo: 14%, base: 10%, esq: 8%, dir: 6%, width: 100%, escala: 117%)
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 100%, width: 100%,stroke: (left: 0.25em))[
+    *Worked solution:*\
+    #block(
+  width: 100%,
+  inset: 8pt,
+  stroke: (left: 2pt + luma(150)),
+  text(size: 1em, style: "italic")[
+    This solution is presented in an explanatory and detailed way, with the aim of helping to understand the reasoning. In a test, the solution may be more concise, provided that the procedure is clear and the results are justified.
+  ]
+)
+
+#set par(hanging-indent: 1cm)
+#v(12pt)   
+*I-a)*#h(0.5em)
+DC generator with compound excitation, long-shunt connection and cumulative flux:
+#let url-drawio = "https://app.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FRicardo-Luis%2Fme-2-oer%2Fmain%2Fexercises%2Fdraw%2FGCompoundCumulativeLongShunt_EN.drawio"
+
+#figure(
+  link(url-drawio)[
+    #image("images/GCompoundCumulativeLongShunt.drawio_EN.pdf", width: 80%,
+      alt: "Diagram of the long-shunt, cumulative compound DC generator")
+  ],
+  numbering: none,
+  caption:[
+    #text(size: 0.8em, style: "italic")[(Click on the figure to edit or reuse the diagram)]
+  ],
+)
+
+
+#set par(hanging-indent: 1cm)
+#v(12pt)    
+*I-b)*#h(0.5em)
+
+
+$U_0 = U_n = 400$~V
+
+$E_0 approx U_0quad $, since $quad Delta U_r=(R_a + R_s) thin I_d quad$ is negligible. Thus: $space E_0 = 400$~V $space @ thin 1500$~rpm
+#v(6pt)
+Since the magnetic flux depends only on the excitation current, the speeds must be converted in order to consult $E_0(i)$, as follows:
+
+#h(1cm)$E_0 = k thin phi.alt thin n quad ==> quad display(cases(
+  400 = k thin phi.alt thin 1500,
+  E_0^(1200) = k thin phi.alt thin 1200
+)) quad ==> quad E_0^(1200) = 400 thin display(1200 / 1500) = 320$~V
+#v(6pt)
+At no load, the series flux is negligible, since: $space I_d thin N_s lt.triple I_d thin N_d$
+#v(6pt)
+Thus, consulting the magnetisation characteristic, $E_0(i)$, we have:
+
+#h(1cm)$E_0^(1200) = 320thin "V" quad arrow.r.double.long^(E_0(i)) quad I_d = 0.4thin "A"$
+#v(6pt)
+The field rheostat of the shunt branch, $R_f$, is obtained as:
+
+#h(1cm)$R_f = display(U_0 / I_d) - R_d = display(400 / 0.4) - 404 = 596thin Omega $
+
+
+]
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 100%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+   
+#v(6pt) 
+*I-c)*#h(0.5em)
+
+- *Interpoles* (commutating poles), on the GNA, between the main poles $arrow.r$ improve commutation with the brushes fixed on the GNA, preventing sparking.
+
+- *Compensating windings*, in slots in the pole faces of the field poles $arrow.r$ cancel the armature MMF under the poles, eliminating the magnetic distortion and the consequent flux reduction.
+
+#v(12pt) 
+*I-d)*#h(0.5em)
+
+Flat (level) regulation $(epsilon=0 thin %)$ under rated conditions $(U_n, I_n, n_n)$ $==> space U_0 = U (I_n)$  $"with" quad U=U_n quad$, since:
+$quad epsilon=display((U_0-U)/U_n)thin 100$
+#v(6pt)
+$I_d = 0.4thin "A" quad$ , since from part b: $quad U_0=U_n quad @thin 1500$~rpm
+
+#v(6pt)
+Calculation of the rated current from the generator rating plate:
+
+#h(1cm)$I_n = display(P_n / U_n) = display((100 dot 10^3) / 400) = 250thin "A" $
+
+#v(6pt)
+Armature current, $I_a$: $quad I_a = I_n + I_d = 250.4thin "A" quad "or simply" quad I_a approx I_n$
+#v(6pt)
+Calculation of the EMF on load, considering $quad Delta E = 0 quad$ and $quad Delta U_"esc" approx 0$:
+
+#h(1cm)$E_0 = U + (R_a + R_s) thin I_a = 400 + (0.26 + 0.10) thin 250 = 490thin "V" quad @ quad 1500thin "rpm" $
+
+#v(6pt)
+Determination of the excitation current that represents the total magnetic flux (shunt + series), by consulting the magnetisation characteristic:
+
+#h(1cm)$E_0^(1200) = 490 thin display( 1200 / 1500) = 392thin "V" quad ==>^(E_0(i)) quad I_"ex" = 0.8thin "A" $
+
+#v(6pt)
+From the sum of the shunt and series MMFs, the total MMF is given by:
+
+#h(1cm)$N_d thin I_"ex" = N_d thin I_d+ N_s thin I_s, quad "with" quad I_s = I_a approx I_n$
+
+#v(6pt)
+Dividing all terms by $N_d$ and substituting, we have:
+
+#h(1cm)$0.8 = 0.4 + display(N_s / N_d) thin 250 quad ==> quad display(N_d / N_s) = display(250 / 0.4) = 625$
+
+
+#v(12pt) 
+#par(first-line-indent: 0pt)[*II-a)*#h(0.5em)]
+
+At no load, $quad P_u = 0 quad ==> quad P_d = P_"mec+Fe" = 1799thin "W"$
+#v(6pt)
+Since: $quad P_d = E' thin I_(a 0)quad$ and $quad E' = U - R_a thin I_(a 0)quad$, combining them gives:
+
+#h(1cm)$P_d = U thin I_(a 0) - R_a thin I_(a 0)^2 quad <==> quad R_a thin I_(a 0)^2 - U thin I_(a 0) + P_d = 0 $
+#v(12pt)
+Alternatively, one could also take the approach: $space E' = U - R_i thin display(P_d/E')space $, and obtain $space E'$.
+
+#v(12pt)
+
+
+]
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 100%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+#v(12pt)
+#h(1cm)Substituting the data gives (quadratic formula): $quad display(cases(
+  I_(a 0) = 6.0thin "A" quad quad space << I_n quad quad checkmark,
+  I_(a 0) = 1298.3thin "A" space >>> I_n quad quad crossmark
+))$
+#v(12pt)
+
+Calculation of the no-load speed, $n_0$, and of the loss torque, $T_"loss"$:
+
+#h(1cm)$display(n_0 = (U - R_i thin I_(i 0)) / (k thin phi.alt) = (300 - 0.23 dot 6.0) / (189 / 1000) = 1580thin "rpm" )$
+#v(6pt)
+#h(1cm)$display(T_"loss" approx P_"mec+Fe" / omega_0 = 1799 / display((2 thin pi thin n_0) / 60) = 1799 / display((2 thin pi thin 1580) / 60) = 10.9thin "Nm" )$
+
+
+
+#v(12pt) 
+#par(first-line-indent: 0pt)[*II-b)*#h(0.5em)]
+
+From the motor rating plate data, the rated current, $I_n$, is obtained:
+
+#h(1cm)$display(I_n = P_n / (eta thin U_n) = (40 dot 10^3) / (0.82 dot 300) = 162.6thin "A" )$
+#v(6pt)
+The motor speed under rated conditions is given by:
+ 
+#h(1cm)$display(n = (U - R_a thin I_n + Delta E(I_n)) / (k thin phi.alt)), quad "with" quad Delta U_"esc" = 0 $
+#v(12pt)
+#h(1cm)$display(n = (300 - 0.23 dot 162.6 + 49.25) / (189 / 1000) = 1650thin "rpm" )$
+#v(6pt)
+For the calculation of the motor shaft torque under rated conditions, we have: 
+
+#h(1cm)#$display(T_"out" = P_n / omega)quad; quad omega= display((2 thin pi thin n) / 60) quad ==> quad T_"out" = display(40000 / display((2 thin pi thin 1650) / 60)) = 231.5thin "Nm" $
+
+
+
+#v(12pt) 
+#par(first-line-indent: 0pt)[*II-c)*#h(0.5em)]
+
+
+#import "@preview/cetz:0.5.3"
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
+
+    // --- Actual powers (W) ---
+    let P-ab = 48780.5
+    let p-der = 900.5      // Joule losses in the shunt field
+    let p-ind = 6081       // Joule losses in the armature
+    let p-mec = 1799       // mechanical + iron losses
+    // Check: P_d = 41799 W e P_u = 40000 W
+    let P-d = P-ab - p-der - p-ind
+    let P-u = P-d - p-mec
+
+    // --- Scale: the initial band (P_ab) is H units thick ---
+    let H = 2.0
+    let k = H / P-ab
+    let t-der = p-der * k
+    let t-ind = p-ind * k
+    let t-mec = p-mec * k
+
+    // --- Geometry of the main band ---
+    let y-topo = 2.8
+    let b0 = y-topo - H        // base inicial (P_ab)
+    let b1 = b0 + t-ind        // after armature losses
+    let b2 = b1 + t-der        // after shunt losses (P_d)
+    let b3 = b2 + t-mec        // after mechanical + iron losses (P_u)
+    let (x1, x2, x3, x-fim) = (2.5, 5.5, 8.5, 11)
+    let rin = 0.5              // inner radius of the branch curves
+    let y-fim = b0 - 1.2       // vertical end of the branches
+
+    // Gradient of the main band; each branch starts from the band colour at the point where it leaves
+    // and goes to red at the arrow tip (a single gradient per branch)
+    let cor-fluxo = gradient.linear(rgb("#2f6fb0"), rgb("#a9c9ea"))
+    let cor-ramo(x0) = gradient.linear(
+      cor-fluxo.sample(x0 / x-fim * 100%), rgb("#d9534f"), angle: 90deg,
+    )
+
+    // Loss branch: leaves the slice [ya, ya + t] of the band, curves downwards and ends in an arrow tip
+    let ramo(x0, ya, t) = {
+      let n = 14
+      let cy = ya - rin
+      let rout = rin + t
+      let arco(r) = range(0, n + 1).map(i => {
+        let th = 90deg * i / n
+        (x0 + r * calc.sin(th), cy + r * calc.cos(th))
+      })
+      line(
+        ..arco(rout),
+        (x0 + rout, y-fim), (x0 + rout + 0.12, y-fim),
+        (x0 + rin + t / 2, y-fim - 0.3),
+        (x0 + rin - 0.12, y-fim), (x0 + rin, y-fim),
+        ..arco(rin).rev(),
+        close: true, fill: cor-ramo(x0), stroke: none,
+      )
+    }
+
+    // Main band
+    line(
+      (0, y-topo), (x-fim, y-topo), (x-fim, b3), (x3, b3), (x3, b2), (x2, b2),
+      (x2, b1), (x1, b1), (x1, b0), (0, b0),
+      close: true, fill: cor-fluxo, stroke: none,
+    )
+
+    // Losses: armature, shunt, mechanical + iron
+    ramo(x1, b0, t-ind)
+    ramo(x2, b1, t-der)
+    ramo(x3, b2, t-mec)
+
+    // Powers written on the band, all at the same height
+    let y-med = (y-topo + b0) / 2
+    content((x1 / 2*0.5, y-med), text(fill: white, [$P_"in"$]))
+    content(((x2 + x3) / 2, y-med), [$P_d$])
+    content(((x3 + x-fim*1.11) / 2, y-med), [$P_"out"$])
+
+    // Loss labels (centred on the branch)
+    let y-leg = y-fim - 0.45
+    content((x1 + rin + t-ind / 2, y-leg), [$p_J^"arm"$], anchor: "north")
+    content((x2 + rin + t-ind / 2, y-leg), 
+    [$p_J^"sh"$], anchor: "north")
+    content((x3 + rin + t-mec / 2, y-leg), [$p_"(mec+Fe)"$], anchor: "north")
+  })
+]
+
+#v(12pt)
+
+#align(center)[
+  #table(
+    columns: 2,
+    align: left+horizon,
+    inset: 8pt,
+    stroke: (x: 0.5pt, y: 0.5pt), rows: (24pt, 30pt, 40pt, 30pt),
+    table.header([*Powers*], [*Losses*]),
+    [$P_"in" = U thin I$], [$p_J^"arm" = R_a thin I_a^2$],
+    [$P_d = E' thin I_a = T_("mi") thin omega quad quad quad quad$], [$p_J^"sh" = U thin I_d quad$ or $quad R_"ex" thin I_d^2 quad$ or $quad display(U^2 / R_"ex")$],
+    [$P_"out" = T_"out" thin omega$], [$p_"(mec+Fe)" approx T_"loss" thin omega$],
+  )
+]
+
+]
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 65%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+
+#v(12pt) 
+*II-d)*#h(0.5em) Developed torque characteristic curves, $T_d=f(I)$, with: $space display(cases(U = "constant", R_f = "constant"))$
+#v(12pt)
+
+#import "@preview/cetz:0.5.3"
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
+    let seta = (end: ">", fill: black, scale: 0.9)
+    let curva(k, b, xmax, ..estilo) = line(
+      ..range(0, 41).map(i => {
+        let x = xmax * i / 40
+        (x, k * x / (1 + b * x))
+      }),
+      ..estilo,
+    )
+
+    // Axes
+    line((0, 0), (0, 5.5), mark: seta)
+    line((0, 0), (7.3, 0), mark: seta)
+    content((-0.4, 5), [$T_d$])
+    content((6.5, -0.45), [$I approx I_a$])
+
+    // Characteristic without ΔE (linear, dashed)
+    line((0, 0), (6.05, 5.47), stroke: (dash: "dashed"))
+    line((8, 1.65), (9, 1.65), stroke: (dash: "dashed"))
+    content((10.2, 1.70), [without $Delta E$])
+
+    // Characteristics with ΔE, for increasing values of R_c
+    curva(0.9, 0.07, 6.0)
+    line((8, 1), (9, 1), stroke: 0.85pt)
+    content((9.94, 1.05), [with $Delta E$])
+    content((8.74, 2.6), [Legend:])
+    curva(0.7, 0.10, 6.0)
+    curva(0.5, 0.12, 6.0)
+    
+
+    // Arrow for increasing R_c
+    line((1.8, 2.7), (3.1, 0.5), mark: seta)
+    content((1.9, 3.2), [$R_f arrow.tr$])
+
+    // Vertical at I and operating points
+    line((4, 0), (4, 4.3), stroke: (dash: "dotted"))
+    content((4, -0.4), [$I$])
+    for y in (3.63, 2.82, 2.00, 1.35) {
+      circle((4, y), radius: 0.05, fill: black, stroke: none)
+    }
+  })
+]
+
+#v(12pt)
+#h(1cm)Justification of the developed torque characteristics:
+
+#h(1cm)$T_d = k thin phi.alt_0 thin I_a quad$ with $quad k thin phi.alt_0=$ constant $space==>space$ linear characteristic $("without" Delta E)$
+#v(6pt)
+#h(1cm)$T_d = k thin phi.alt thin I_a quad$ with $quad k thin phi.alt < k thin phi.alt_0$, decreasing as the current $I_a$ increases $==>$ non-linear characteristic $("with" Delta E)$
+#v(12pt)
+or: $quad display(T_d = E'_0 / omega thin I_a) quad ("without" Delta E) quad$ _vs._ $quad display(T_d = E' / omega thin I_a quad) ("with" Delta E), quad$ where: $space E' < E'_0$
+#v(12pt)
+Effect of increasing $R_f$ on the developed torque characteristics:
+
+#h(1cm)$R_f arrow.tr.filled quad ==> quad I_d arrow.br.filled quad ==> quad phi.alt arrow.br.filled quad ==> quad T_d arrow.br.filled$
+
+
+
+]
+
+
+#v(42pt)
+
+
+
+
 
 == Bibliography
 
@@ -1482,4 +1855,1395 @@ If the electronic variable-speed drive supports bidirectional current, *regenera
   
 
 
+//#pagebreak(to: "odd")
+
+
+
+// //verso-Prefácio:
+ #set page(
+   header: context [],
+   footer: context []
+ )
+ #v(100%)    //forma expedita de colocar página em branco, sem estar numerado
+// //verso-Prefácio|
+
+
+
+#set page(
+   header: [
+    #set text(8pt, font: "Source Code Pro")
+    #upper()[ISEL\\LEE\\ME II]
+    #h(1fr) Three-Phase Synchronous Machines
+  ],
+  numbering: none,
+  footer: context [
+    #set align(center)
+    #set text(9pt, font: "Libertinus Math")
+    #counter(page).display("1")
+    ], 
+  )
+#counter(page).update(33)
+
+
+
  
+= Three-Phase Synchronous Machines
+
+
+== Exercise 1
+#v(12pt) 
+#h(1cm) 
+A three-phase synchronous alternator, $390$~kVA, $1250$~V, $50$~Hz, $750$~rpm, delta-connected, gives the following results in the open-circuit (no-load) and short-circuit tests:
+
+#v(6pt)
+#align(center)[
+  #table(columns: 8
+  , column-gutter: 20pt,
+stroke: none,
+align: right,
+[$I_f$ (A):], [$0.0$],[$11.5$], [$15.0$], [$20.0$], [$23.5$],  [$29.0$], [$33.5$], [$E_0$ (V):], [$91$],[$1010$], [$1235$], [$1460$], [$1560$], [$1640$], [$1660$], 
+[$I_"sc"$ (A):], [$12$], [$144$], [$185$], [$242$], [$284$], [$347$], [$400$])
+]
+
+#v(6pt)
+The resistance measured at the terminals of the armature winding is $0.144 space Omega$. Determine:
+#v(12pt)
+
++ The per-phase resistance of the alternator armature winding, considering a skin-effect correction factor of $1.2$;
+
++ The line voltage, for rated current and an field current of $33.5$~A, considering a load power factor of $0.9$ lagging;
+
++ The external characteristic of the three-phase synchronous alternator, with a field current of $33.5$~A, for power factors of $0.9$ lagging, unity and $0.9$ leading;
+
++ The alternator field current required  to supply a three-phase induction motor at a voltage of $1$~kV, knowing that the motor develops a power of $150$~kW with a power factor of $0.832$ and an efficiency of $90thin%$.
+#v(6pt)
+#h(1.5cm) (*Note:* Assume that the synchronous impedance, $overline(Z)_s)$, is the same as that obtained in the previous part)
+
+\
+(Source: Adapted from problem 9 in [Malea & Balaguer, 2004])
+
+
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 1:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/StandAloneSynGen.html")[interactive _notebook_] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+#pagebreak()
+== Exercise 2
+#v(12pt) 
+#h(1cm) 
+A four-pole, cylindrical-rotor, three-phase synchronous alternator, with its stator windings connected in delta, is used to supply an isolated electrical network with balanced loads. The alternator is equipped with operational speed and field-current regulators which maintain the frequency and voltage constant, respectively. Nameplate ratings: $72$~kVA, $400$~V, $50$~Hz, $cos phi=0.83thin("lead")$. The data from the no-load test, short-circuit test and resistance measurements are known:
+
+#v(6pt)
+#align(center)[
+  #table(columns: 9
+  , column-gutter: 16pt,
+stroke: none,
+align: right,
+[$I_f$ (A):], [$0.0$],[$1.0$], [$2.0$], [$3.0$], [$4.0$],  [$5.0$], [$6.0$], [$quad R_"J-K"=1
+00thin Omega$], [$E_0$ (V):], [$15$],[$202$], [$370$], [$460$], [$480$], [$491$], [$500$], [],
+[$I_"sc"$ (A):], [$2$], [$27$], [$51$], [$76$], [$101$], [$125$], [$150$], [$quad R_"U-V"=0.6thin Omega$])
+]
+
+#v(6pt)
+
+
++ Draw and determine the parameters of the per-phase equivalent circuit of this machine for a field current of $5$~A;
+
++ Consider a synchronous reactance, $X_s=7.9thin Omega\/"phase"$. Determine the electromotive force and the load angle, $overline(E)_0=E_0 thin angle thin delta$, for the alternator operating under rated conditions;
+
++ Determine the efficiency and the mechanical torque under rated conditions, knowing that the rotational losses are $1015$~W;
+
++ Suppose that the field-current regulator has failed. Consequently, the field current remains constant at the value specified in part b). Qualitatively analyse what happens to the network voltage if the power factor, $cos phi$, decreases, assuming that the stator current, $I$, remains constant. Justify, presenting side-by-side phasor diagrams (for the initial condition and after the decrease in $cos phi$). For simplicity, take $R_s=0space Omega$.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $E_0=491$~V; $quad overline(Z)_s=0.9+"j"thin 6.74space Omega$#h(2em)
+    *b)*#h(0.5em) $​​460.4thin angle 66.9degree$~~V\ 
+    *c)*#h(0.5em) $​​83.7 thin%$; $quad 448.8$~Nm 
+    ]
+
+
+== Exercise 3
+#v(12pt) 
+#h(1cm) 
+A synchronous generator, Y-connected, $2300$~V, $1000$~kVA, $0.8$ lagging power factor, $60$~Hz, $2$ poles, has a synchronous reactance of $1.1space Omega$ and an armature resistance of $0.15space Omega$. At $60$~Hz, the friction and windage losses are $24$~kW and the core losses are $18$~kW.\
+The field winding is supplied by a DC voltage of $200$~V, the maximum value of $I_f$ being $10$~A. The open-circuit test of this alternator is shown in the following figure:
+
+#figure(image("/images/Open-circuit_Voltage_Alternator.png", width: 65%), )
+
++ What field current is required for the alternator to have a line-to-line voltage to be $2300$~V, when the alternator runs at no load?
+
++ What is the electromotive force (EMF) generated by this machine under rated operating conditions?
+
++ What field current is required to obtain the rated voltage when the alternator is operating under rated conditions?
+
++ What power and torque are required to drive this alternator under rated conditions?
+
++ Obtain the P$thin$--$thin$Q diagram of this alternator;
+
++ Under rated conditions, obtain the external characteristic, $U="f"(I)$, for: \ $cos phi=0.8$ lagging; $cos phi=0.8$ leading; $cos phi=1$.
+
++ For an EMF of $2500$~V, determine the external characteristic, $U="f"(I)$, for: \ $cos phi=0.8$ lagging; $cos phi=0.8$ leading; $cos phi=1$.
+
+\
+(Source: Adapted from problem 5.2 in [Chapman, 2005])
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 3:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/CurvesSynGen.html")[interactive _notebook_] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+== Exercise 4
+#v(12pt) 
+#h(1cm) 
+A $3~$ synchronous machine, $5$~kVA, $208$~V, $4$ poles, $60$~Hz, with Y-connected stator, has a negligible stator resistance and a synchronous reactance of $8Omega\/$phase.\
+The machine is operated as an alternator connected to a $3~$, $208$~V -- $60$~Hz electrical grid.
+
++ Determine the EMF and the load angle when the machine delivers its rated power (kVA) at a power factor of $0.8$~lagging. Draw the voltage phasor diagram for these conditions;
+
++ Calculate the stator current, power factor and reactive power supplied by the machine if the field current increases by $20thin%$. Draw the corresponding voltage phasor diagram;
+
++  With the field current of part a), the mechanical power of the prime mover is gradually increased. What is the steady-state stability limit?\ What are the corresponding values of stator current, power factor and reactive power at the condition of maximum power transfer? Draw the phasor diagram.
+\
+(Source: Example 6.3 in [Sen, 1989])
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $​​206.8thin angle 25.4degree$~~V#h(2em)
+    *b)*#h(0.5em) $​​17.8thin angle -51.6degree$~~A; #h(1em) $0.62("lag")$; #h(1em) $5.0$~kVAr\
+    *c)*#h(0.5em) $​​29.9thin angle 30.1degree$~~A; #h(1em) $0.87space ("lead")$; #h(1em) $5.4$~~kVAr
+    ]
+
+== Exercise 5
+#v(12pt) 
+#h(1cm) 
+Consider the Huntorf thermal power plant with compressed-air energy storage (CAES -- _Compressed-Air Energy Storage_), which uses a high-speed cylindrical-rotor synchronous machine that can operate as an alternator, a motor or a synchronous compensator.\ The plant is connected to the electrical grid at $15$~kV -- $50$~Hz and the synchronous machine has the following parameters: Y-connection, $X_s=0.34space Omega\/$phase, $R_a approx 0space Omega space $ and rotational losses, $space p_"rot"=3.2$~MW (assumed constant in all operating modes).\ 
+#pagebreak()
+*Plant Operating Modes*
+
+The plant operates in three modes, enabled by two  Synchro-Self-Shifting (SSS) clutches, [SSS gears, 2025], which allow the turbine and the compressor to be coupled to or decoupled from the main shaft:
+-   *Generation mode (alternator):* Compressed air is heated by burning natural gas and expanded through the turbine, which drives the alternator to generate electricity.
+-   *Storage mode (motor):* The machine operates as a motor and drives the compressor to store high-pressure air in underground reservoirs (salt caverns).
+
+-   *Synchronous compensator mode:* Both clutches are disengaged and the machine runs at no load, focusing on reactive power management to support the grid.
+
+#let url-drawio = "https://app.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FRicardo-Luis%2Fme-2-oer%2Fmain%2Fexercises%2Fdraw%2FCAES_plant_EN.drawio"
+
+#figure(
+  link(url-drawio)[
+    #image("images/CAES_plant_EN.png", width: 80%,
+      alt: "Huntorf CAES thermal power plant")
+  ],
+  numbering: none,
+  caption:[
+    #text(size: 1em)[Simplified operating diagram of the Huntorf CAES thermal power plant, Germany. Adapted from [EERA, 2013]]])
+
+
+
+#v(6pt)
+*Part 1: Alternator mode (power generation) -- Peak period*\
+#h(1cm) (In this mode, the turbine clutch is engaged.) The mechanical power supplied by the turbine to the machine shaft is $321$~MW. The synchronous machine supplies power to the grid at a lagging power factor of $0.88$. Determine:
+#v(6pt)
++  the active power supplied to the electrical grid and the line current;
++  the per phase electromotive force and the load angle;
++ Draw the voltage phasor diagram, indicating the powers on the $Q(delta), P(delta)$ and $P(phi), Q(phi)$ axes.
+#v(6pt)
+*Part 2: Synchronous motor mode (energy storage) -- Off-peak period*\
+#h(1cm) (In this mode, the compressor clutch is engaged.) The mechanical power required to drive the compressor is $60$~MW. The machine draws power from the grid and is operated over-excited to inject reactive power into the grid, at a power factor of $0.70$. Determine:
+#v(6pt)
++ the active power drawn from the electrical grid and the line current;
++ the perphase electromotive force and the load angle;
++ Draw the voltage phasor diagram, indicating the powers on the $Q(delta), P(delta)$ and $P(phi), Q(phi)$ axes.
+#v(6pt)
+*Part 3: Synchronous compensator mode -- Ancillary services*\
+#h(1cm) (In this mode, both SSS clutches are  disengaged)
+#v(6pt)
++  Starting from the generator mode, as defined in Part 1, describe the procedures required to operate the machine as a *synchronous reactor*;
++ Starting from the motor mode, as defined in Part 2, describe the procedures required to operate the machine as a *synchronous condenser*;
++  If the power station is configured to supply $72$~MVAr of inductive reactive power to the electrical grid, determine the required back electromotive force and load angle. Draw the corresponding voltage phasor diagram, indicating the powers on the $Q(delta), P(delta)$ and $P(phi), Q(phi)$ axes.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,height: 28%, stroke: (left: 0.25em))[
+    *Worked solution (Part 1):* 
+#set par(hanging-indent: 1cm)
+    *a)*\
+    As an alternator, since the stator Joule losses are neglected $(R approx 0)$, the active power supplied to the electrical grid, $P$, is given by:\
+    #h(2em)$P=P_"turbine"-p_"rot"=321-3.2=317.8$~MW
+    #v(6pt)
+    In turn, considering the power factor, the line current, $I_L$, is obtained from:\
+    #v(6pt)
+    #h(2em)$I_L=display(P/(sqrt(3)thin U_L thin cos phi))=display((317.8 times 10^6) / (sqrt(3) times 15 times 10^3 times 0.88))=13.90$~kA
+  ]
+
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,height: 71%, stroke: (left: 0.25em))[  
+#set par(hanging-indent: 1cm)
+    \
+    *b)*\
+    With the stator windings star-connected, the following per-phase quantities apply:
+
+    #h(2em)$overline(I)=I_L angle phi quad$ with: $quad phi=-arccos(0.88)= -28.4 degree quad$ and $quad overline(U)=display(U_L/sqrt(3)) angle 0 degree$
+
+    #v(6pt)
+    Thus, $overline(E)_0$ is given by:
+
+    #h(2em)$overline(E)_0=E_0 angle delta=overline(U)+"j"X_s overline(I)=(display((15times 10^3) / sqrt(3)) angle 0 degree) + "j"thin 0.34 thin (13.90 times 10^3 angle -28.4 degree)$
+    
+    #h(3.1cm)$=11.67 thin angle 20.9 degree$~~kV
+    
+ \
+    *c)*\
+
+
+#import "@preview/cetz:0.5.3"
+#move(dx: 2cm, {
+cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 3000
+  let scaleU = 1000
+  let (Iph, I) = (-28.36deg, 13990.15/scaleI)
+  let (Ix, Iy) = (12232.13/scaleI, -6602.2/scaleI)
+  let U = (15000/1.732)/scaleU //kV
+  let (Eph, E) =(20.88deg, 11671.1/scaleU)
+  let (DUx, DUy) = (2244.75/(scaleU), 4158.92/scaleU)
+  
+  group({
+  scale(1)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((U*0.9, -0.5), $overline(U)$)
+
+  line((0, 0), (Iph, I), name: "I", mark: (end: ">"))
+  content((Iph -10deg, I*0.95), $ overline(I)$)
+
+  line((U, 0), (U+DUx, DUy), name: "DU", mark: (end: ">"))
+  content((0.92*(U+DUx), DUy*0.3), $"j"X_s overline(I)$)
+
+  
+  line((0, 0), (Eph,E), name: "E0", mark: (end: ">"))
+  content((Eph+4deg, 0.5*E), $overline(E)_0$)
+  })
+
+  group({
+  scale(1)
+  set-style(stroke: green.darken(30%) + 0.5pt)
+  line((U,-1), (U, 5.5), name: "P", mark: (end: ">"))
+  content((U*0.94, 5), text(green.darken(30%), $P(delta)$))
+  line((U,0), (U+4, 0), name: "q", mark: (end: ">"))
+  content((U+3.3, -0.35), text(green.darken(30%), $Q(delta)$))
+
+  group({
+  scale(1)
+  set-style(stroke: blue.darken(30%) + 0.5pt)
+  line((0,0), (-2, 0), name: "P", mark: (end: ">"))
+  content((-1.3, -0.3), text(blue.darken(30%), $P(phi)$))
+  line((0,0), (0, -3.5), name: "q", mark: (end: ">"))
+  content((-0.5, -3), text(blue.darken(30%), $Q(phi)$))
+})
+
+group({
+  scale(1)
+  set-style(stroke: black + 0.5pt)
+
+ arc((1.5, 0), start: 0deg, stop: Iph, radius: 1.5)
+  content((1.8, -0.4), $phi$)
+  arc((2, 0), start: 0deg, stop: Eph, radius: 1.9)
+  content((2.3, 0.3), $delta$)
+ })
+
+
+  line((0,0), (Iph, I*1.8), name: "I_line", stroke: (dash: "dashed"))
+
+
+  line((U,0), (U - (DUx*1), - (DUy*1)), name: "I_line", stroke: (dash: "dashed"))
+
+   line((0,Iy), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+   line((Ix,0), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+
+     line((0,Iy), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+   line((U+DUx,0), (U+DUx,DUy), name: "I_line",stroke: (paint: green.darken(30%), dash: "dashed"))
+
+    line((U+DUx,DUy), (U,DUy), name: "I_line",stroke: (paint: green.darken(30%), dash: "dashed"))
+   
+})
+})
+})
+
+  ]
+
+  #rect(fill: luma(240), width: 100%,height: 26%, stroke: (left: 0.25em))[
+    *Worked solution (Part 2):* 
+#set par(hanging-indent: 1cm)
+    *a)*\
+    As a motor, since the stator Joule losses are neglected $(R approx 0)$, the active power drawn from the electrical grid, $P$, is given by:\
+    #h(2em)$P=P_"compressor"+p_"rot"=60+3.2=63.2$~MW
+    #v(6pt)
+    In turn, considering the power factor, the line current, $I_L$, is obtained from:\
+    #v(6pt)
+    #h(2em)$I_L=display(P/(sqrt(3)thin U_L thin cos phi))=display((63.2 times 10^6) / (sqrt(3) times 15 times 10^3 times 0.70))=3475$~A
+  ]
+
+  #rect(fill: luma(240), width: 100%,height: 61%, stroke: (left: 0.25em))[
+#set par(hanging-indent: 1cm)
+    \
+    *b)*\
+    The overexcited motor, $(E'_0 cos delta >U)$, requires the current to be capacitive (leading), so:
+
+    #h(2em)$phi=arccos(0.70)= 45.6 degree quad$
+
+    #v(6pt)
+    Thus, $overline(E)'_0$ is given by:
+    
+    #h(2em)$overline(E)'_0=E'_0 angle delta=overline(U)-"j"X_s overline(I)=(display((15times 10^3) / sqrt(3)) angle 0 degree) - "j"thin 0.34 thin (3475 thin angle 45.6 degree)$
+    
+    #h(3.1cm)$=9.54 thin angle -5.0 degree$~~kV
+
+
+     \
+    *c)*\
+
+
+#import "@preview/cetz:0.5.3"
+#move(dx: 2cm, {
+cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 3000
+  let scaleU = 1000
+  let (Iph, I) = (45.57deg, 3475/scaleI)
+  let (Ix, Iy) = (2432.57/scaleI, 2481.72/scaleI)
+  let U = (15000/1.732)/scaleU //kV
+  let (Eph, E) =(-4.97deg, 9540/scaleU)
+  let (DUx, DUy) = (843.784/(scaleU), -827.074/scaleU)
+  
+  group({
+  scale(1)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((U*0.55, 0.3), $overline(U)$)
+
+  line((0, 0), (Iph, I), name: "I", mark: (end: ">"))
+  content((Iph +10deg, I*1.1), $ overline(I)$)
+
+  line((U, 0), (U+DUx, DUy), name: "DU", mark: (end: ">"))
+  content((1.07*(U+DUx), DUy*0.6), $"-j"X_s overline(I)$)
+
+  
+  line((0, 0), (Eph,E), name: "E0", mark: (end: ">"))
+  content((Eph -6deg, 0.5*E), $overline(E)_0^'$)
+  })
+
+  group({
+  scale(1)
+  set-style(stroke: green.darken(30%) + 0.5pt)
+  line((U,1), (U, -2), name: "P", mark: (end: ">"))
+  content((U*0.94, -1.7), text(green.darken(30%), $P(delta)$))
+  line((U,0), (U+3.5, 0), name: "q", mark: (end: ">"))
+  content((U+3, -0.35), text(green.darken(30%), $Q(delta)$))
+
+   group({
+  scale(1)
+  set-style(stroke: blue.darken(30%) + 0.5pt)
+  line((0,0), (-2, 0), name: "P", mark: (end: ">"))
+  content((-1.3, -0.3), text(blue.darken(30%), $P(phi)$))
+  line((0,0), (0, 2.5), name: "q", mark: (end: ">"))
+  content((-0.5, 2), text(blue.darken(30%), $Q(phi)$))
+})
+
+group({
+  scale(1)
+  set-style(stroke: black + 0.5pt)
+
+ arc((1.5, 0), start: 0deg, stop: Iph, radius: 1.5)
+  content((1.6, 0.7), $phi$)
+  arc((6.1, 0), start: 0deg, stop: Eph, radius: 6)
+  content((6.3, -0.3), $delta$)
+ })
+
+
+  line((0,0), (Iph, I*5.5), name: "I_line", stroke: (dash: "dashed"))
+
+
+  line((U,0), (U - (DUx*5.5), - (DUy*5.5)), name: "I_line", stroke: (dash: "dashed"))
+
+   line((0,Iy), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+   line((Ix,0), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+
+     line((0,Iy), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+   line((U+DUx,0), (U+DUx,DUy), name: "I_line",stroke: (paint: green.darken(30%), dash: "dashed"))
+
+    line((U+DUx,DUy), (U,DUy), name: "I_line",stroke: (paint: green.darken(30%), dash: "dashed"))
+   
+})
+})
+})
+    
+  ]
+
+#rect(fill: luma(240), width: 100%,height: 36.8%, stroke: (left: 0.25em))[
+    *Worked solution (Part 3):* 
+#set par(hanging-indent: 1cm)
+    *a)*\
+    Starting from operation as an overexcited alternator (Part 1), the machine must be made to "float" on the electric grid, i.e. making: $quad P->0 quad$ and $quad Q->0$.\ To do so, the mechanical power of the turbine must be reduced, by reducing the mechanical torque supplied by the turbine to the alternator. As a result:\
+
+    #h(2em)$P_"turbine" arrow.br.filled quad => quad delta arrow.br.filled quad => quad P arrow.br.filled space "and" space Q \u{2B08} ("slightly"); quad "until" quad P=0$
+
+    Simultaneously, the field current of the alternator must be adjusted to reduce the reactive power until it is zero:
+
+    #h(2em)$I_"exc" arrow.br.filled  quad => quad Q arrow.br.filled quad "until" quad Q=0$
+    #v(6pt)
+    As soon as there is no power flow between the synchronous machine and the electrical grid, the turbine-alternator clutch is automatically opened (or decoupled).
+
+  ]
+  
+#rect(fill: luma(240), width: 100%,height: 99%, stroke: (left: 0.25em))[
+   
+#set par(hanging-indent: 1cm)
+
+\
+    Since the synchronous machine remains electrically connected to the grid, it now behaves as a synchronous motor at no load (synchronous compensator).
+    In this mode it draws a low current, essentially to supply its rotational losses, $P=P_"rot"$.
+
+    As a synchronous compensator, to act in synchronous reactor mode, it must absorb an inductive (lagging) current. To do so, the synchronous machine must be under-excited, reducing the field current until the desired reactive power value is obtained.
+
+    Thus, the synchronous compensator will draw inductive current, which means that it will be producing capacitive reactive power for the electrical grid.
+    
+    \
+    *b)*\
+    Starting from operation as an over-excited motor (Part 2), it is enough to reduce the mechanical torque that the compressor exerts on the shaft of the synchronous machine until it is zero, leaving the motor at no load (synchronous compensator). Thus:\
+
+    #h(2em)$P_"compressor" arrow.br.filled quad => quad |delta| arrow.br.filled quad => quad |P| arrow.br.filled space "and" space Q\u{2B08} ("slightly"); quad "until" quad P=0$
+
+    As soon as there is no mechanical power transmission (zero mechanical torque) from the synchronous motor to the compressor, the compressor-motor clutch is automatically opened (or decoupled).
+    
+    For operation as a synchronous condenser, the synchronous compensator must be over-excited (as it already was in Part 2), to draw capacitive current. Thus, it is only necessary to readjust the excitation current to the required reactive power value. 
+    
+    Consequently, and as an example, increasing the excitation current increases the capacitive current drawn by the machine, which allows it to produce more inductive reactive power for the electrical grid: 
+    
+    #h(2em)$I_"exc"  \u{2B08}quad => quad E'_0\u{2B08} quad => I ("cap") \u{2B08} quad => Q  \u{2B08}$
+    #v(6pt)
+
+
+     \
+    *c)*\
+    For the synchronous compensator to produce $72$~MVAr of inductive reactive power for the grid, it must draw capacitive current, acting as a capacitor bank (synchronous condenser mode). Thus, the apparent power required for the synchronous condenser to operate is given by:
+
+    #h(2em)$overline(S)=p_"rot"- "j"thin Q=3.2 - "j"thin 72$~~MVA
+
+    Since: $quad overline(S)=3 thin overline(U) thin overline(I)^* quad$ with: $quad U, I quad$ the voltage and current per phase. Thus:
+  ]
+
+#rect(fill: luma(240), width: 100%,height: 47%, stroke: (left: 0.25em))[
+#set par(hanging-indent: 1cm)
+    \
+    #h(2em)$overline(I)=(display(overline(S) / (3 thin overline(U))))^*=(display((p_"rot" - "j"thin Q) / (3 thin U angle 0 degree)))^* =(display(((3.2-"j"thin 72)times 10^6) / (3 thin display(15 times 10^3)/ display(sqrt(3)) angle 0 degree)))^*=2774 thin angle 87.5 degree$~~A
+
+    #v(6pt)
+    Thus, $overline(E)'_0$ is given by:
+    
+    #h(2em)$overline(E)'_0=E'_0 angle delta=overline(U)-"j"X_s overline(I)=(display((15times 10^3) / sqrt(3)) angle 0 degree) - "j"thin 0.34 thin (2774 thin angle 87.5 degree)$
+    
+    #h(3.1cm)$=9.6 thin angle -0.25 degree$~~kV
+    
+    #v(6pt)
+    #underline[Phasor diagram]:
+    
+#import "@preview/cetz:0.5.3"
+#move(dx: 2cm, {
+cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 3000
+  let scaleU = 1000
+  let (Iph, I) = (87.455deg, 2774/scaleI)
+  let (Ix, Iy) = (123.17/scaleI, 2771.28/scaleI)
+  let U = (15000/1.732)/scaleU //kV
+  let (Eph, E) =(-0.25deg, 9602.6/scaleU)
+  let (DUx, DUy) = (942.23/(scaleU), -41.88/scaleU)
+  
+  group({
+  scale(1)
+  set-style(stroke: (thickness:1pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((U*0.95, 0.25), $overline(U)$)
+
+  line((0, 0), (Iph, I), name: "I", mark: (end: ">"))
+  content((Iph +10deg, I*1.1), $ overline(I)$)
+
+  line((U, 0), (U+DUx, DUy), name: "DU", mark: (end: ">"),  stroke: (paint: red.darken(30%)))
+  content((0.96*(U+DUx), -DUy*6), text(red.darken(30%), $"-j"X_s overline(I)$))
+  
+  line((0, 0), (Eph,E), name: "E0", mark: (end: ">"), stroke: (paint: purple.darken(30%)))
+  content((Eph -6deg, 0.5*E), text(purple.darken(30%), $overline(E)_0^'$))
+  })
+
+  group({
+  scale(1)
+  set-style(stroke: green.darken(30%) + 0.5pt)
+  line((U,1), (U, -2), name: "P", mark: (end: ">"))
+  content((U*0.94, -1.7), text(green.darken(30%), $P(delta)$))
+  line((U,0), (U+3.5, 0), name: "q", mark: (end: ">"))
+  content((U+3, -0.35), text(green.darken(30%), $Q(delta)$))
+
+  group({
+  scale(1)
+  set-style(stroke: blue.darken(30%) + 0.5pt)
+  line((0,0), (-2, 0), name: "P", mark: (end: ">"))
+  content((-1.3, -0.3), text(blue.darken(30%), $P(phi)$))
+  line((0,0), (0, 2.5), name: "q", mark: (end: ">"))
+  content((-0.5, 2), text(blue.darken(30%), $Q(phi)$))
+})
+
+group({
+  scale(1)
+  set-style(stroke: black + 0.5pt)
+
+  arc((1.5, 0), start: 0deg, stop: Iph, radius: 1.5)
+  content((1.6, 0.7), $phi$)
+  arc((6.1, 0), start: 0deg, stop: Eph, radius: 6)
+  content((6.3, -0.3), text(purple.darken(30%), $delta=-0.25 degree$))
+})
+
+
+  line((0,0), (Iph, I*3), name: "I_line", stroke: (dash: "dashed"))
+
+
+  line((U,0), (U - (DUx*10), - (DUy*10)), name: "I_line", stroke: (paint: red.darken(30%),dash: "dashed"))
+
+  line((0,Iy), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+  line((Ix,0), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+
+  line((0,Iy), (Ix,Iy), name: "I_line",stroke: (paint: blue.darken(30%), dash: "dashed"))
+
+  line((U+DUx,0), (U+DUx,DUy), name: "I_line",stroke: (paint: green.darken(30%), dash: "dashed"))
+
+  line((U+DUx,DUy), (U,DUy), name: "I_line",stroke: (paint: green.darken(30%), dash: "dashed"))
+   
+})
+})
+})
+
+    
+  ]
+  
+    
+
+== Exercise 6
+#v(12pt) 
+#h(1cm) 
+The synchronous machine of *Exercise 4* is now used as a synchronous motor supplied from a $3~$, $208$~V -- $60$~Hz network. The field current is adjusted to obtain unity power factor when the machine draws $3$~kW from the grid.
+
++ Determine the back electromotive force (back EMF) and the load angle. Draw the voltage phasor diagram under these conditions;
+
++ Determine the maximum torque the motor can develop if the field current is kept constant and the load applied to the shaft is gradually increased.
+
+\
+(Source: Example 6.4 in [Sen, 1989])
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $​​137.3 thin angle -29.0degree$~~V#h(2em)
+    *b)*#h(0.5em) $​​32.8$~Nm    
+    ]
+
+
+
+\
+== Exercise 7
+#v(12pt) 
+#h(1cm) 
+Consider a synchronous alternator with $X_s=4space Omega$ and $R approx 0space Omega$, operating on an infinite-power bus: $U=200space"V/phase"$ and $f=50space"Hz"
+$.
+
++ Draw the phasor diagrams corresponding to the combinations of the following active and reactive powers: #align(center)[
+  #table(columns: 6, align: center, column-gutter: 20pt, stroke: none,
+[$0$], [$5$], [$10$], [$15$], [$20$], [kW, kVAr]
+)]
+
++ Plot the V-curves, also known as Mordey curves, for the required power levels.
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 7:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/Vcurves.html")[interactive _notebook_] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+== Exercise 8
+#v(12pt) 
+#h(1cm) 
+Consider a cylindrical-rotor synchronous machine, $2$ poles, $20$~MVA, $6$~kV$-50$~Hz, #box($cos phi = 0.8$)~ (lagging), Y-connected stator windings of negligible resistance and $X_s=1.1$~pu. The synchronous machine is connected to a $6$~kV$-50$~Hz electrical grid and has the operating map represented by the V-curves in the following figure: 
+
+#figure(image("/images/curvas v_pu.png", width: 65%),)
+
+Determine in per-unit (pu) values:
+
++ the active and apparent power at operating point $4$ and the corresponding load angle;
+
++ Which points form an optimum-excitation line? Justify;
+
++ at points $1$ and $3$, the active and reactive powers and the load angles, as an alternator. Present side by side the voltage phasor diagrams of points $1$ and $3$, indicating the respective powers;
+
++ the rotational losses of the machine. Justify.
+
++ the mechanical torque corresponding to point $8$, operating as a synchronous motor. Present the corresponding voltage phasor diagram;
+
++ Select, with justification, the point corresponding to synchronous condenser operation and draw its voltage phasor diagram.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $Q_4=0$~pu; #h(0.5em) $​​P_4=plus.minus 0.6$~pu; #h(0.5em) $delta_4=plus.minus 33.4degree$#h(2em) 
+    *b)*#h(0.5em) optimum excitation: $6-​​8 - 2 - 4$ #h(2em)\
+    *c)*#h(0.5em) $P_1=P_3=0.25$~pu; #h(1em) $delta_1=21.5degree$; #h(0.5em)  $delta_3=10.6degree$; #h(1em) $Q_1=0.27$~pu (leading); #h(0.5em)\ #h(1.5em)$Q_3=0.43$~pu (lagging) #h(2em)\
+    *d)*#h(0.5em) $p_"rot"=0.05$~pu #h(2em) 
+    *e)*#h(0.5em) $T_"mec"=0.2$~pu #h(2em) 
+    *f)*#h(0.5em) synchronous condenser: $7$
+    ]
+
+
+    == Exercise 9
+#v(12pt) 
+#h(1cm) 
+A three-phase synchronous machine, $5$~MVA, $11$~kV, with Y-connected stator windings, has a synchronous reactance of $10space Omega\/$phase and a negligible armature resistance. The machine is connected to an $11$~kV$-60$~Hz busbar and operates as a synchronous compensator. Neglect the mechanical losses.
+
++ Determine the stator current at the optimum-excitation point. Draw the phasor diagram;
+
++ Determine the stator current and the power factor if the field current is increased by $50thin%$. Draw the phasor diagram;
+
++ Likewise, for a decrease of $50thin%$. Draw the phasor diagram.
+
+\
+(Source: Example 6.6 in [Sen, 1989])
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,height: 100%, stroke: (left: 0.25em))[
+    *Worked solution:* 
+#set par(hanging-indent: 1cm)
+    *a)* 
+    
+    With no losses to consider and since this is a synchronous compensator $(P=0)$, the current will be zero at the optimum excitation point $(Q=0, space "or" space cos phi=1)$, hence $I=0$~A.
+
+    #v(6pt)
+#h(1cm)    #underline[Phasor diagram]:
+    
+    
+#import "@preview/cetz:0.5.3"
+#move(dx: 2cm, {
+cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 40
+  let scaleU = 1000
+  let (Iph, I) = (90deg, 200/scaleI)
+  let U = (11e3/1.732)/scaleU //kV
+   
+  group({
+  scale(1)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((U*0.9, -0.5), $overline(U)$)
+
+  line((0, 0), (0.1, 0.1), name: "I", mark: (end: "<>"))
+  content((-0.2, 0.3), $ overline(I)=0$)
+
+  line((0, 0), (U,0), name: "E0", mark: (end: ">"))
+  content((U*0.9, 0.5), $overline(E)_0^'$)
+  })
+
+  group({
+  scale(1)
+  set-style(stroke: (thickness:0.5pt))
+  line((U,-1), (U, 3.5), name: "P", mark: (end: ">"))
+  content((U*0.95, 3), "P")
+  line((U,0), (U+3.5, 0), name: "q", mark: (end: ">"))
+  content((U+3, -0.35), "Q")
+})
+})
+})
+
+\
+    
+    *b)* 
+    
+    Assuming a linear magnetic circuit (the magnetisation characteristic being unknown), a $50thin%$ increase in the excitation current produces the same increase in the electromotive force, $overline(E)_0$. Thus, starting from the previous situation, $(overline(E)_0^'=overline(U))$, we have:
+
+    #h(2em) $E_0^'=1.5thin U$
+
+    As a synchronous compensator, neglecting losses, the load angle is zero, $delta=0degree.$
+
+
+#v(6pt)
+#h(1cm)#underline[Phasor diagram]:
+
+#import "@preview/cetz:0.5.3"
+#move(dx: 2cm, {
+cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 150
+  let scaleU = 1000
+  let (Iph, I) = (90deg, 317.5/scaleI)
+  let U = (11e3/1.732)/scaleU //kV
+  let E =1.5*U
+   
+  group({
+  scale(1)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((U*0.9, -0.5), $overline(U)$)
+
+  line((0, 0), (Iph, I), name: "I", mark: (end: ">"))
+  content((-0.4, I*0.8), $ overline(I)$)
+
+  line((0, 0), (E,0), name: "E0", mark: (end: ">"))
+  content((E*0.9, 0.5), $overline(E)_0^'$)
+  content((E*0.9, -0.6), $-j X_s overline(I)$)
+  })
+
+  group({
+  scale(1)
+  set-style(stroke: (thickness:0.5pt))
+  line((U,-1), (U, 2.5), name: "P", mark: (end: ">"))
+  content((U*0.95, 2), "P")
+  line((U,0), (U+6, 0), name: "q", mark: (end: ">"))
+  content((U+5.5, -0.35), "Q")
+})
+})
+})
+
+\  
+    #h(2em) $​​overline(E)_0^'=overline(U)-"j"thin X_s thin overline(I) quad <=> quad overline(I)=display((overline(E)_0^'-overline(U)) / (-"j"thin X_s))quad <=>$
+    
+    \
+    #h(2em) $<=> quad overline(I)=display(((1.5times 11times 10^3)/sqrt(3) thin angle 0 degree)-((11times 10^3)/sqrt(3)thin angle 0 degree)) / (display(-"j"thin 10))=317.5 thin angle 90 degree$~~A
+
+    
+     ]
+
+#rect(fill: luma(240), width: 100%,height: 43%, stroke: (left: 0.25em))[
+#set par(hanging-indent: 1cm)  
+\
+    *c)* 
+    
+    Using similar reasoning to the previous part, we have:       $quad E_0^'=0.5thin U quad$ and $quad delta=0degree.$
+
+    \
+    #underline[Phasor diagram]:
+#import "@preview/cetz:0.5.3"
+#move(dx: 2cm, {
+cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 150
+  let scaleU = 1000
+  let (Iph, I) = (90deg, 317.5/scaleI)
+  let U = (11e3/1.732)/scaleU //kV
+  let E =0.5*U
+   
+  group({
+  scale(1)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((U*0.9, -0.5), $overline(U)$)
+
+  line((0, 0), (Iph, -I), name: "I", mark: (end: ">"))
+  content((-0.4, -I*0.8), $ overline(I)$)
+
+  line((0, 0), (E,0), name: "E0", mark: (end: ">"))
+  content((E*0.8, 0.5), $overline(E)_0^'$)
+  
+
+  line((U, 0), (E,0), name: "Xs", mark: (end: ">"))
+  content((E*1.2, -0.6), $-j X_s overline(I)$)
+  
+  })
+
+  group({
+  scale(1)
+  set-style(stroke: (thickness:0.5pt))
+  line((U,-1), (U, 2.5), name: "P", mark: (end: ">"))
+  content((U*0.95, 2), "P")
+  line((U,0), (U+3.5, 0), name: "q", mark: (end: ">"))
+  content((U+3, -0.35), "Q")
+})
+})
+})
+
+\  
+    #h(0.5em) $​​overline(E)_0^'=overline(U)-"j"thin X_s thin overline(I) quad <=> quad overline(I)=display((overline(E)_0^'-overline(U)) / (-"j"thin X_s))quad <=> quad overline(I)=317.5 thin angle -90 degree$~~A
+    ]
+
+
+== Exercise 10
+#v(12pt) 
+#h(1cm) 
+Consider a three-phase synchronous alternator, $20$~MVA, $11$~kV, with star-connected stator windings of negligible resistance. The synchronous alternator has the following magnetisation characteristic at rated speed:
+
+#align(center)[
+  #table(columns: 11, column-gutter: 4pt,
+stroke: none,
+align: right,
+[$I_f$ (A)], [$60$], [$80$], [$100$], [$120$],  [$140$], [$160$], [$180$], [$200$], [$220$], [$240$], 
+[$E_0$ (V)], [$7 772$], [$8 827$], [$9 611$], [$10 214$], [$10 694$], [$11 085$], [$11 409$], [$11 683$], [$11 917$], [$12 119$])
+]
+
+The alternator is connected to an $11$~kV infinite-power busbar, supplying a power of $20$~MW at unity power factor. For an field current of $200$~A, determine:\
+
+#set par(hanging-indent: -3.5em) // Define o recuo deslocado
+
++ The synchronous reactance of the alternator;\
+  \
+  Consider a second three-phase synchronous alternator, with identical rated characteristics, connected in parallel with the first alternator to the $11$ kV infinite-power busbar and carrying the same field current. If the two alternators together supply a power of $36$~MW, shared equally between them, at a power factor of $0.9$~lagging, calculate:
+
++ The induced EMF in each three-phase synchronous alternator and the total current supplied to the electrical grid;\ 
+  \
+  If the per phase EMF of one of the alternators operating in parallel is reduced by $10thin%$, while the mechanical torque applied by the turbine to each alternator and the overall power factor are kept constant, determine:
+
++ The induced EMF in the other three-phase synchronous alternator required to meet the stated operating conditions;
+
++ The currents supplied to the grid and the power factor of each alternator.
+
+#set par(hanging-indent: 0em) // 
+\
+(Source: Adapted from problem 10 in [Malea & Balaguer, 2004])
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $2.16space Omega$; #h(2em)
+    *b)*#h(0.5em) $7618 thin angle 15.5 degree$~~V;#h(0.5em)$2099 thin angle -25.8degree$~~A;#h(2em)
+    *c)*#h(0.5em) $8385 thin angle 14.1 degree$~~V#h(2em)\
+    *d)*#h(0.5em) $949$~A; #h(0.5em)$0.996space("lag")$; #h(1em)$1254$~A;#h(0.5em)$0.753space("lag")$
+    ]
+
+
+
+== Exercise 11
+#v(12pt) 
+#h(1cm)
+A salient-pole synchronous alternator, $12$~MVA, delta-connected, $eta=91%$, is part of a cogeneration process at a pulp and paper mill and is connected to an $13.8$~kV$-50$~Hz infinite-power busbar. The following parameters are known: $X_d=34Omega\/$phase; $X_q=16space Omega\/$phase and $R approx 0 space Omega$.
+
++ Qualitatively draw the voltage phasor diagram at full load and $cos phi = 0.81$ (leading), showing how the direct and quadrature axes are determined and the corresponding current components along these axes;
+
++ Determine the electromotive force phasor under these operating conditions;
+
++ Keeping the excitation current constant, determine the static stability limit of this alternator and the corresponding developed power;
+
++ Qualitatively:
+    - How to proceed to set this synchronous machine to operate as a synchronous condenser in this installation, starting from the operating point described;
+    - Present the phasor diagram of the new operating point of the synchronous machine.
+
+ 
+    
+#v(12pt)
+  #rect(fill: luma(240), width: 100%, height: 99%, stroke: (left: 0.25em))[
+    *Worked solution:* 
+#set par(hanging-indent: 1cm)
+
+
+*a)*
+
+#import "@preview/cetz:0.5.3"
+#cetz.canvas({
+  import cetz.draw: *
+  let scaleI=60
+  let (Iph, I) = (35.9deg, 289.9/scaleI)
+  let (Idph, Id) = (108.7deg, 85.7/scaleI)
+  let (Iqph, Iq) = (18.7deg, 286.9/scaleI)
+  let U = 13.8 //kV
+ 
+  let (XqI_x, XqI_y) = (11.08, 3.75)
+  let (Eph, E) = (18.7deg, 11.7)
+  let (XdXq_x, XdXq_y) = (9.62,3.255)
+  
+  group({
+  scale(1)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((13, -0.5), $overline(U)$)
+  
+  line((0,0), (Iph, I), name: "I", mark: (end: ">"))
+  content((3.3, 2.9), $overline(I)$)
+  
+  line((0,0), (Idph, Id), name: "Id", mark: (end: ">"))
+  content((-0.7, 0.6), $overline(I)_d$)
+  
+  line((0,0), (Iqph, Iq), name: "Iq", mark: (end: ">"))
+  content((4, 0.8), $overline(I)_q$) 
+
+  
+  line((U,0), (XqI_x, XqI_y), name: "XqI", mark: (end: ">"))
+  content((13.2, 1.9), $j X_q overline(I)$) 
+
+  line((0,0), (Eph, E), name: "E", mark: (end: ">"))
+  content((10.5, 3.8), $overline(E)$)
+
+  line((11.08,3.75), (XdXq_x, XdXq_y), name: "XdXq", mark: (end: ">"), stroke: blue.darken(30%) + 4pt)
+  content((10.4, 2.7), text(blue.darken(30%), $j(X_d - X_q) overline(I)_d $))
+
+  line((0,0), (XdXq_x, XdXq_y), name: "E0", mark: (end: ">"))
+  content((8.94, 3.38), $overline(E)_0$)
+  
+  })
+  
+  arc((1.5, 0), start: 0deg, stop: Iph, radius: 1.5)
+  content((1.6, 0.88), $phi$)
+  arc((1.8, 0), start: 0deg, stop: Iqph, radius: 1.9)
+  content((2, 0.3), $delta$)
+  line((0.5,-1.47), (108.7deg, 4), name: "d", mark: (end: ">"))
+  content((-1.3, 3), "d")
+  line((-2.5,-0.85), (18.7deg, 15), name: "q", mark: (end: ">"))
+  content((13.7, 4.35), "q")
+
+  line((-0.458,1.353), (3.91,2.83), stroke: (dash: "dashed"))
+  
+  line((3.91,2.83), (4.5,1.5), stroke: (dash: "dashed"))
+
+ 
+  line((0,0), (Iph, I*2.5), name: "I_line", stroke: (dash: "dashed"))
+
+  line((U,0), (9.05, 6.54), name: "XqI_line", stroke: (dash: "dashed"))
+
+})
+
+
+#v(12pt)
+
+#h(2.5em)*b)*
+
+Voltage and current phasors per phase (equivalent circuit), $overline(U)_f$ and $overline(I)_f$:
+#v(6pt)
+#h(2em) $​​I_n=display(S_n /(sqrt(3) U_n)) = display((12 times 10^6) /(sqrt(3) dot 13.8 times 10^3)) = 502$~A
+#h(2em) phase angle: $phi=arccos(0.81)=35.9degree$
+#v(10pt)
+#h(4em) Stator in $Delta$:#h(1em) $U_f=U_n$ ; #h(1em)  $I_f=display(I_n/sqrt(3))$ #h(1cm) 
+#v(10pt)
+#h(4em) Phasors:#h(1em)  
+$overline(U)_"f"=13.8 angle 0 degree$ kV#h(2em)  $overline(I)_"f"=display(502/sqrt(3)) thin angle 35.9 degree$~~A 
+#v(12pt)
+Effective EMF phasor, $overline(E)$:\
+#h(2em) $overline(E)=overline(U)_f + j X_q  overline(I)_f = (13.8 times 10^3 angle 0 degree)+j 16 (display(502/sqrt(3)) angle 35.9 degree)= 11.7 thin angle 18.7 degree$~~kV
+#v(12pt)
+Current phasor along the direct axis, $overline(I)_d$:\
+#v(6pt)
+#h(2em) $overline(I)_d = I sin(phi-delta) angle (delta+90degree) = display(502/sqrt(3))sin(35.9degree- 18.7degree) thin angle (18.7degree + 90 degree)$\ 
+#h(2em) $overline(I)_d = 85.7 angle 108.7 degree$~~A
+
+#v(12pt)
+EMF phasor, $overline(E)_0$:\
+#h(2em) $overline(E)_0=overline(E) + j (X_d-X_q)  overline(I)_d = (11.7 times 10^3 angle 18.7 degree)+j (34-16) (85.7 thin angle 108.7 degree)$\
+#h(2em) $overline(E)_0 = 10.16 thin angle 18.7 degree$~~kV
+
+]
+
+#rect(fill: luma(240), width: 100%, height: 100%, stroke: (left: 0.25em))[
+#set par(hanging-indent: 1cm)
+\
+*c)*#h(0.5em) \
+$"Static stability limit: " arrow.r.double display((upright(d)P_d)/(upright(d)delta)) &= 0 arrow.l.r.double \
+display((3 thin U E_0)/X_d)cos delta_"lim" + display((3 thin U^2 (X_d-X_q))/(X_d X_q)) cos (2 delta_"lim") &= 0 arrow.l.r.double\
+display((3 dot 13.8 times 10^3 dot 10.16 times 10^3)/34)cos delta_"lim" + display((3 thin  (13.8 times 10^3)^2 (34-16))/(34 dot 16)) cos (2 delta_"lim") &= 0 arrow.r.double\
+delta_"lim" &= 55.8 degree$
+
+With: $I_"exc"="constant" arrow.r.double E_0="constant"$
+
+#v(12pt)
+Substituting into $P_d (delta)$ with $delta=delta_"lim"$:
+#v(12pt)
+$P_d^"max" &= display((3 U E_0)/X_d) sin delta_"lim" + display((3U^2(X_d-X_q))/(2 X_d X_q)) sin (2 delta_"lim") \
+&= display((3 dot 13.8 times 10^3 dot 10.16 times 10^3)/34) sin (55.8degree) + display((3 thin  (13.8 times 10^3)^2 (34-16))/(2 dot 34 dot 16)) sin (2 dot 55.8degree) \
+&approx 19space"MW"$
+
+
+\
+*d)*#h(0.5em)Procedure for operating as a synchronous condenser:
+
+#h(2.5em)1st : $(T_"mec" arrow.br.filled$ #h(0.5em)until#h(0.5em) $delta=0)$#h(0.5em)and#h(0.5em)$(I_"exc" arrow.tr.filled$#h(0.5em)until#h(0.5em) $overline(E)_0=overline(U))$ $arrow.r.double$  machine "floating" on the network, i.e. $(Q=0, P=0)$
+
+#h(2.5em)2nd : Decouple the turbine from the alternator $arrow.r.double$ synchronous motor at no load
+
+#h(2.5em)3rd : $(I_"exc" arrow.tr.filled$#h(0.5em)until#h(0.5em) $Q "desired")$, overexcited mode $arrow.r.double$ synchronous condenser 
+
+\
+Voltage phasor diagram of the salient-pole synchronous condenser:
+
+\
+#import "@preview/cetz:0.5.3"
+#cetz.canvas({
+  import cetz.draw: *
+  let scaleI = 40
+  let (Iph, I) = (90deg, 200/scaleI)
+  let U = 13.8 //kV
+   
+  group({
+  scale(0.5)
+  set-style(stroke: (thickness:2pt))
+  
+  line((0, 0), (U, 0), name: "U", mark: (end: ">"))
+  content((12.8, -1), $overline(U)$)
+
+  line((0, 0), (Iph, I), name: "I", mark: (end: ">"))
+  content((-1.6, 3.6), $overline(I)_d= overline(I)$)
+
+  line((U, 0), (17,0), name: "E", mark: (end: ">"))
+  content((16.2, -1), $overline(E)'$)
+  content((15.2, 0.7), $-j X_q overline(I)$)
+
+  line((U, 0), (20.6,0), name: "E0", mark: (end: ">"))
+  content((20, -1), $overline(E)_0^'$)
+  content((20., 0.7), $-j (X_d-X_q) overline(I)_d$)
+  })
+
+  line((0,-1), (90deg, 4), name: "d", mark: (end: ">"))
+  content((-0.3, 3.3), "d")
+  line((-2.5,0), (0deg, 14), name: "q", mark: (end: ">"))
+  content((13.5, -0.3), "q")
+})
+
+
+]
+
+    
+
+== Exercise 12
+#v(12pt) 
+#h(1cm) 
+A three-phase synchronous motor with four salient poles and a star-connected stator is operating on a $208$~V infinite bus, at $cos phi = 0.8thin ("lagging")$, drawing $40$~A.\
+
+It is known that: $f=50$~Hz; $X_d=2.7space Omega\/$phase; $X_q=1.7space Omega\/$phase; $R=0space Omega$.
+
++  Qualitatively draw the corresponding voltage phasor diagram, showing how the direct and quadrature axes are determined and the current components along these axes;
+
++ Determine the back electromotive force phasor, $overline(E)_0^'$, under the stated operating conditions;
+
++ Calculate the maximum torque developed by this machine;
+
++ Qualitatively draw the developed-torque characteristic of this motor.
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *b)*#h(0.5em) $94.5 thin angle -34.5 degree$~~V;#h(2em)
+    *c)*#h(0.5em) $95.8$~Nm
+    ]
+
+
+== Exercise 13
+#v(12pt) 
+#h(1cm) 
+A $3~$ salient-pole synchronous machine, $50$~MVA, $11$~kV$-60$~Hz, with Y-connected stator windings, has reactances: $X_d=0.8$~pu and $X_q=0.4$~pu. The machine operates as a synchronous motor at full load with a power factor of $0.8$ lagging. The mechanical losses are $0.15$~pu.\
+Neglect the armature Joule losses.
+
++ Determine $X_d$ and $X_q$ in $Omega$;
+
++ Determine the EMF in pu;
+
++ Determine the powers developed (in pu) due to the excitation EMF and due to the reluctance effect of the rotor;
+
++ If the field current is reduced to zero, does the machine remain in synchronism? Justify;
+
++ If the shaft load is removed and the field current is reduced to zero, determine the value of the stator current (in pu) and the power factor. Draw the machine voltage phasor diagram for this operating condition.
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 13:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/SalientPoleSyncMotor.html")[interactive _notebook_] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+
+
+
+== Bibliography
+\
+ #list(indent: 1cm, spacing: 18pt, 
+  [[Chapman, 2005]: S.J. Chapman, Electric Machinery Fundamentals, 4#super("th") Ed., McGraw-Hill, USA, 2005.],
+  [[Malea & Balaguer, 2004]: J.M. Malea, E.F. Balaguer, Problemas resueltos de máquinas eléctricas rotativas, Publicações da Universidade de Jaume I, Espanha, 2004.],
+  [[Sen, 1989]: P.C. Sen, Principles of electric machines and power electronics, John Wiley & Sons, USA, 1989.],
+  [[EERA, 2013] Luo X, Wang J. Overview of current development on compressed air energy storage. EERA technical report; Dec. 2013. URL: #link("https://www.cedren.no/Portals/Cedren/Overview%20of%20Current%20Development%20on%20Compressed%20Air%20Energy%20Storage_EERA%20report%202013.pdf", )],
+  [[SSS gears, 2025] SSS Clutch
+Operating Principle, SSS Notes Reference NR2167, SSS Gears Limited. URL:
+#link("https://files.sssgears.co.uk/NR2167.pdf")]
+)
+
+
+
+//#pagebreak(to: "odd")
+
+
+
+// //verso-Prefácio:
+ #set page(
+   header: context [],
+   footer: context []
+ )
+ #v(100%)    //forma expedita de colocar página em branco, sem estar numerado
+// //verso-Prefácio|
+
+#set page(
+   header: [
+    #set text(8pt, font: "Source Code Pro")
+    #upper()[ISEL\\LEE\\ME II]
+    #h(1fr) Electrical Machine Transients
+  ],
+  numbering: none,
+  footer: context [
+    #set align(center)
+    #set text(9pt, font: "Libertinus Math")
+    #counter(page).display("1")
+    ], 
+  )
+#counter(page).update(53)
+
+
+= Electrical Machine Transients
+
+
+
+== Exercise 1
+#v(12pt) 
+#h(1cm) Analyse separately the following two three-phase synchronous alternators, each star-connected to an infinite bus of $6$~kV --~$50$~Hz.
+Each alternator initially supplies $1 "MW"$ at $cos phi = 1$.
+
+#align(center)[
+  #table(columns: 3, column-gutter: 12pt, row-gutter: 8pt,
+stroke: none,
+align: (right, center, center),
+[], [*Alternator 1*], [*Alternator 2*], 
+[Synchronous machine:], [cylindrical rotor],  [salient poles], [Rated power:], [$5$~MVA], [$5$~MVA], 
+[Reactances/phase:], [$X_s=12.75thin Omega$], [$X_d=12.75thin Omega$; $X_q=display(X_d/2)$ ], 
+[Losses:], [negligible], [negligible],
+[EMF/phase:], [$E_0=3.675$~kV], [$E_0=3.675$~kV],)
+]
+
+#v(6pt)
+#h(1cm)Suppose that a fault occurs in the turbine governor, causing the mechanical power, $P_"mec"$, to increase suddenly from $1$~MW to a new constant value, $P_"mec" > 1$~MW.
+The infinite bus keeps the frequency and the voltage constant, absorbing the excess active power and any variation in reactive power.
+
+Using the equal-area criterion, determine the maximum permissible disturbance for each alternator while keeping the synchronous machine stable. Discuss the differences between the alternators.
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 1:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/EqualArea.html")[interactive _notebook_] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+
+== Exercise 2
+
+#h(1cm)A three-phase cylindrical-rotor synchronous motor, $800$~kW, $X_s=1.2$~pu, connected to an infinite-power electrical grid at $6.6$~kV~--~$50$~Hz, drives the main line of a polypropylene film extruder.
+
+In steady state, the motor draws a power of $560$~kW at unity power factor $(Q approx 0)$. Neglect Joule and rotational losses.
+
+Suddenly the film tears in the stretching oven, causing the mechanical load on the motor shaft to drop instantaneously from $560$~kW to $0$~kW (the motor is left at no load).
+
+Assuming that the field current remains constant, determine:
+
++ the initial load angle, $delta_0$;
+
++ the maximum angle reached by the rotor during the transient, $delta_"máx"$;
+
++ Justify whether the motor remains in synchronism or loses it, using the equal-area criterion.
+*Note:* It is not necessary to calculate the areas numerically. Obtain the answer by simple inspection of the accelerating and decelerating areas, without any integration (use only the physical interpretation).
+
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *a)*#h(0.5em) $-40.0 degree quad$;#h(2em)
+    *b)*#h(0.5em) $40.0 degree$
+    ]
+
+
+
+
+== Exercise 3
+#v(12pt) 
+#h(1cm) Consider a separately excited DC motor on which two tests were carried out:
+
+ #list(indent: 2cm,
+    [No-load test to separate the mechanical and magnetic losses;],[Deceleration (run-down) test to determine the mechanical parameters.]
+  )
+
+#v(12pt)
+*No-load test*  (armature voltage and current at constant speed = $1500$~rpm)
+
+#align(center)[
+  #table(columns: 15, column-gutter: 6pt,
+stroke: none,
+align: right,
+[(V)], [$220$], [$210$], [200], [$190$], [$180$],  [$170$], [$160$], [$151$], [$140$], [$130$], [$121$], [$110$], [100], [$91$],
+[(mA)], [$2720$], [$2730$], [$2740$], [$2780$], [$2816$], [$2870$], [$3036$], [$3080$], [$3180$], [$3353$], [$3492$], [$3730$], [$4010$], [$4335$])
+]
+
+#v(12pt)
+*Deceleration test* (vertical scale: $1500$~rpm <> $5.8$~div):
+
+#figure(image("/images/DesaccTest.png", width: 83%), )
+
+\
++ Determine the mechanical losses of this motor, given that the armature resistance is $R_a=0.834 thin Omega$;
++ Determine the mechanical parameters of this motor (moment of inertia, viscous and static friction coefficients).
+
+#v(12pt)
+
+#rect(fill: luma(240), width: 100%, stroke: (left: 0.25em))[
+  #set par(hanging-indent: 0cm)
+  *Worked solution to Exercise 3:* #h(5pt)\u{1F517} #show link: underline
+  #link("https://ricardo-luis.github.io/me-2/DecelerationTest.html")[interactive _notebook_] developed with #h(2pt)#box(baseline: 22%, height: 12pt, image("/images/logos/pluto.svg", alt: "Pluto")) #h(1pt) -- #h(1pt)#box(baseline: 23%, height: 18pt, image("/images/logos/julia.svg", alt: "Julia")).
+]
+
+
+== Exercise 4
+#v(12pt) 
+#h(1cm) Consider two DC machines connected according to the electrical diagram in the following figure:
+
+#v(6pt)
+#figure(image("/images/motor-generator_DCgroup.png", width: 100%))
+
+#v(6pt)
+The shunt-excited generator, *G*, supplies the load resistance, *Ru*, and is driven at $1250$~rpm by a separately excited motor, *M*, which has the following magnetisation characteristic:
+
+#align(center)[
+  #table(columns: 10, column-gutter: 12pt,
+stroke: none,
+align: right,
+[$i$ (A)], [$0$], [$0.2$], [$0.4$], [$0.6$],  [$0.8$], [$1.0$], [$1.2$], [1.4], table.cell(colspan: 1, [$n_("mag")=1000$~rpm]), 
+[$E$ (V)], [$15$], [$75$], [$130$], [$170$], [$200$], [$220$], [$235$], [250])
+]
+
+#v(6pt)
++ Write down the equations modelling the dynamic operation of the DC motor;
+
++ Consider the motor supplied at a voltage of $295$~V and a current of $50$~A. Assuming that the flux is constant, calculate the load torque applied to the motor under these conditions, given that the system (motor + load) has the following mechanical parameters:#table(columns: 3, column-gutter: 50pt,
+stroke: none,
+align: right,
+[$J=0.4$~kgm#super([2])], [$K_d=0.07$~Nm/rad.s#super([-1])], [$K_e=3.5$~Nm])
+
++ Suppose that the motor is operating under the following conditions: #table(columns:3, align: center,stroke: none, column-gutter: 50pt, [$T_d=100$~Nm], [$T_l=80$~Nm], [$n=2250$~rpm])
+
+#v(12pt)
+
+ #pad(x: 1.4cm)[
+  #table(columns:2,align:right, row-gutter: 2pt, stroke: none, table.cell(colspan: 1, [Determine the value of $space display(("d" omega)/("d" t))space$ when:]),[1$)space ->$ switch 1 is opened;], [], [2$) space ->$  switch 2 is opened.])]
+
+#v(12pt)
+  #rect(fill: luma(240), width: 100%,stroke: (left: 0.25em))[
+    *Answers:* 
+#set par(hanging-indent: 1cm)
+    *b)*#h(0.5em) $​92.3$~Nm;#h(2em)
+    *c-1)*#h(0.5em) $-250$~rads#super([-2]) ; #h(2em) *c-2)*#h(0.5em) $200$~rads#super([-2])
+    ]
+
+
+
+
+
+
+#v(15%)
+
+//verso-Prefácio:
+#set page(
+  header: context [],
+  footer: context []
+)
+#v(100%)    //forma expedita de colocar página em branco, sem estar numerado
+//verso-Prefácio|
+
+
+//#bibliography("works.bib")
+
+
+// ============================================================================
+// CONTRA-CAPA (última página)
+// ============================================================================
+
+
+#pagebreak(to: "even")
+
+
+
+//contra-capa sem header nem footer:
+#set page(
+  header: context [],
+  footer: context [],
+)
+
+
+
+
+// Importar pacote para gerar QR codes
+#import "@preview/codetastic:0.2.2": qrcode
+
+#page[
+  // QR code e info no canto inferior esquerdo
+  #place(
+    bottom + left,
+    dx: 0cm,
+    dy: -1cm,
+    [
+      #set align(left)
+      
+      // Layout com QR code à esquerda e info à direita
+      #grid(
+        columns: (2.5cm, 1fr),
+        column-gutter: 0.01cm,
+        
+        // Coluna esquerda - QR code
+        align(left + bottom)[
+          #qrcode(github_download, width: 2.5cm)
+        ],
+        
+        // Coluna direita - Informação básica
+        align(left + horizon)[
+          #text(size: 11pt, weight: "bold")[
+            OER/REA | CC BY-SA 4.0
+          ]
+          
+          #v(0.1cm)
+          #h(-20pt)
+          #text(size: 11pt)[
+            #autor | #instituicao | #ano
+          ]
+        ]
+      )
+    ]
+  )
+]
+
+
+// Para ver o endereço de download:
+//#raw(github_download)

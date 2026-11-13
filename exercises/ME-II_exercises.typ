@@ -40,7 +40,7 @@
 #text(20pt, font: "Cantarell")[*#titulo*]
 
 #set align(center + bottom) 
-#text(10pt)[outubro #ano]
+#text(10pt)[novembro #ano]
 
 //CAPA|
 
@@ -1482,7 +1482,373 @@ Se o variador eletrónico de velocidade for bidirecional em corrente, então oco
   ]
 
 
-#v(5%)
+
+#pagebreak()
+== Resolução de teste de avaliação
+\
+#align(center)[*1º Teste – 29 de Outubro de 2026*]
+
+#let recortar-pdf(path, topo: 0pt, base: 0pt, esq: 0pt, dir: 0pt, escala: 100%, ..args) = layout(size => {
+  let img = image(path, ..args)
+  let s = measure(img, ..size)
+  let r(v, ref) = if type(v) == ratio { ref * v } else { v }
+  let t = r(topo, s.height)
+  let b = r(base, s.height)
+  let e = r(esq, s.width)
+  let d = r(dir, s.width)
+  scale(escala, origin: top + left, reflow: true,
+    block(
+      width: s.width - e - d,
+      height: s.height - t - b,
+      clip: true,
+      move(dx: -e, dy: -t, box(width: s.width, height: s.height, img)),
+    ),
+  )
+})
+
+#recortar-pdf("images/T1.pdf", topo: 14%, base: 8%, esq: 8%, dir: 6%, width: 100%, escala: 117%)
+
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 100%, width: 100%,stroke: (left: 0.25em))[
+    *Resolução:*\
+    #block(
+  width: 100%,
+  inset: 8pt,
+  stroke: (left: 2pt + luma(150)),
+  text(size: 1em, style: "italic")[
+    Esta resolução é apresentada de forma explicativa e pormenorizada, com o objetivo de ajudar a perceber o raciocínio. Num teste, a resolução pode ser mais concisa, desde que o procedimento seja claro e os resultados estejam justificados.
+  ]
+)
+
+#set par(hanging-indent: 1cm)
+#v(12pt)   
+*I-a)*#h(0.5em)
+Gerador de corrente contínua de excitação composta, em longa derivação, com fluxo aditivo:
+#let url-drawio = "https://app.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FRicardo-Luis%2Fme-2-oer%2Fmain%2Fexercises%2Fdraw%2FGCompoundCumulativeLongShunt.drawio"
+
+#figure(
+  link(url-drawio)[
+    #image("images/GCompoundCumulativeLongShunt.drawio.pdf", width: 80%,
+      alt: "Esquema do gerador CC composto em longa derivação com fluxo aditivo")
+  ],
+  numbering: none,
+  caption:[
+    #text(size: 0.8em, style: "italic")[(Clicar na figura para editar ou reutilizar o esquema)]
+  ],
+)
+
+
+#set par(hanging-indent: 1cm)
+#v(12pt)    
+*I-b)*#h(0.5em)
+
+
+$U_0 = U_n = 400$~V
+
+$E_0 approx U_0quad $, pois $quad Delta U_r=(R_i + R_s) thin I_d quad$ é desprezável. Assim: $space E_0 = 400$~V $space @ thin 1500$~rpm
+#v(6pt)
+Como o fluxo magnético só depende da corrente de excitação, é necessário fazer a conversão de velocidades para consultar a $E_0(i)$, fazendo:
+
+#h(1cm)$E_0 = k thin phi.alt thin n quad ==> quad display(cases(
+  400 = k thin phi.alt thin 1500,
+  E_0^(1200) = k thin phi.alt thin 1200
+)) quad ==> quad E_0^(1200) = 400 thin display(1200 / 1500) = 320$~V
+#v(6pt)
+Em vazio, o fluxo série é desprezável, pois: $space I_d thin N_s lt.triple I_d thin N_d$
+#v(6pt)
+Assim, consultando a característica magnética, $E_0(i)$, tem-se:
+
+#h(1cm)$E_0^(1200) = 320thin "V" quad arrow.r.double.long^(E_0(i)) quad I_d = 0.4thin "A"$
+#v(6pt)
+O reóstato de campo do ramo em derivação, $R_c$, obtém-se:
+
+#h(1cm)$R_c = display(U_0 / I_d) - R_d = display(400 / 0.4) - 404 = 596thin Omega $
+
+
+]
+
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 100%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+   
+
+*I-c)*#h(0.5em) 
+- *Polos auxiliares* (de comutação, interpolos), na LNG, entre os polos principais $arrow.r$ melhoram a comutação com as escovas fixas na LNG, evitando centelhamento (faíscas).
+
+- *Enrolamentos de compensação*, em cavas na cabeça dos polos de excitação $arrow.r$ anula a FMM do induzido sob os polos, eliminando a distorção magnética e a consequente redução de fluxo.
+
+#v(12pt) 
+*I-d)*#h(0.5em)
+
+Regulação plana $(epsilon=0 thin %)$ nas condições nominais $(U_n, I_n, n_n)$ $==> space U_0 = U (I_n)$  $"com" quad U=U_n quad$, pois:
+$quad epsilon=display((U_0-U)/U_n)thin 100$
+#v(6pt)
+$I_d = 0.4thin "A" quad$ , pois da alínea b: $quad U_0=U_n quad @thin 1500$~rpm
+
+#v(6pt)
+Cálculo da corrente nominal a partir da chapa de características do gerador:
+
+#h(1cm)$I_n = display(P_(u n) / U_n) = display((100 dot 10^3) / 400) = 250thin "A" $
+
+#v(6pt)
+Corrente do induzido, $I_i$: $quad I_i = I_n + I_d = 250.4thin "A" quad "ou simplesmente" quad I_i approx I_n$
+#v(6pt)
+Cálculo da FEM em carga, considerando $quad Delta E = 0 quad$ e $quad Delta U_"esc" approx 0$:
+
+#h(1cm)$E_0 = U + (R_i + R_s) thin I_i = 400 + (0.26 + 0.10) thin 250 = 490thin "V" quad @ quad 1500thin "rpm" $
+
+#v(6pt)
+Determinação da corrente de excitação que representa o fluxo magnético total (derivação + série), por consulta à característica magnética:
+
+#h(1cm)$E_0^(1200) = 490 thin display( 1200 / 1500) = 392thin "V" quad ==>^(E_0(i)) quad I_"ex" = 0.8thin "A" $
+
+#v(6pt)
+Da soma das FMM derivação e série tem-se a FMM total dada por:
+
+#h(1cm)$N_d thin I_"ex" = N_d thin I_d+ N_s thin I_s, quad "com" quad I_s = I_i approx I_n$
+
+#v(6pt)
+Dividindo todas as parcelas por $N_d$ e substituindo, tem-se:
+
+#h(1cm)$0.8 = 0.4 + display(N_s / N_d) thin 250 quad ==> quad display(N_d / N_s) = display(250 / 0.4) = 625$
+
+
+#v(12pt) 
+#par(first-line-indent: 0pt)[*II-a)*#h(0.5em)]
+
+
+Em vazio, $quad P_u = 0 quad ==> quad P_d = P_"mec+Fe" = 1799thin "W"$
+#v(6pt)
+Como: $quad P_d = E' thin I_(i 0)quad$ e $quad E' = U - R_i thin I_(i 0)quad$, combinando-as tem-se:
+
+#h(1cm)$P_d = U thin I_(i 0) - R_i thin I_(i 0)^2 quad <==> quad R_i thin I_(i 0)^2 - U thin I_(i 0) + P_d = 0 $
+#v(12pt)
+Alternativamente também se poderia optar pelo caminho: $E' = U - R_i thin display(P_d/E')$, e obter $E'$.
+
+#v(12pt)
+
+
+]
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 100%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+#v(12pt)
+#h(1cm)Substituindo os dados obtém-se (fórmula resolvente): $quad display(cases(
+  I_(i 0) = 6.0thin "A" quad quad space << I_n quad quad checkmark,
+  I_(i 0) = 1298.3thin "A" space >>> I_n quad quad crossmark
+))$
+#v(12pt)
+Cálculo da velocidade em vazio, $n_0$, e do binário de perdas, $T_p$:
+
+#h(1cm)$display(n_0 = (U - R_i thin I_(i 0)) / (k thin phi.alt) = (300 - 0.23 dot 6.0) / (189 / 1000) = 1580thin "rpm" )$
+#v(6pt)
+#h(1cm)$display(T_p approx P_"mec+Fe" / omega_0 = 1799 / display((2 thin pi thin n_0) / 60) = 1799 / display((2 thin pi thin 1580) / 60) = 10.9thin "Nm" )$
+
+
+
+#v(12pt) 
+#par(first-line-indent: 0pt)[*II-b)*#h(0.5em)]
+
+Dos dados da chapa de características do motor obtém-se a corrente nominal, $I_n$:
+
+#h(1cm)$display(I_n = P_(u n) / (eta thin U_n) = (40 dot 10^3) / (0.82 dot 300) = 162.6thin "A" )$
+#v(6pt)
+A velocidade do motor em regime nominal vem dada por:
+ 
+#h(1cm)$display(n = (U - R_i thin I_n + Delta E(I_n)) / (k thin phi.alt)), quad "com" quad Delta U_"esc" = 0 $
+#v(12pt)
+#h(1cm)$display(n = (300 - 0.23 dot 162.6 + 49.25) / (189 / 1000) = 1650thin "rpm" )$
+#v(6pt)
+Para o cálculo do binário útil do motor em regime nominal, tem-se: 
+
+#h(1cm)#$display(T_u = P_(u n) / omega)quad; quad omega= display((2 thin pi thin n) / 60) quad ==> quad T_u = display(40000 / display((2 thin pi thin 1650) / 60)) = 231.5thin "Nm" $
+
+
+
+#v(12pt) 
+#par(first-line-indent: 0pt)[*II-c)*#h(0.5em)]
+
+
+#import "@preview/cetz:0.5.3"
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
+
+    // --- Potências reais (W) ---
+    let P-ab = 48780.5
+    let p-der = 900.5      // perdas por efeito de Joule na derivação
+    let p-ind = 6081       // perdas por efeito de Joule no induzido
+    let p-mec = 1799       // perdas mecânicas + ferro
+    // Verificação: P_d = 41799 W e P_u = 40000 W
+    let P-d = P-ab - p-der - p-ind
+    let P-u = P-d - p-mec
+
+    // --- Escala: a banda inicial (P_ab) tem H unidades de espessura ---
+    let H = 2.0
+    let k = H / P-ab
+    let t-der = p-der * k
+    let t-ind = p-ind * k
+    let t-mec = p-mec * k
+
+    // --- Geometria da banda principal ---
+    let y-topo = 2.8
+    let b0 = y-topo - H        // base inicial (P_ab)
+    let b1 = b0 + t-ind        // após perdas no induzido
+    let b2 = b1 + t-der        // após perdas na derivação (P_d)
+    let b3 = b2 + t-mec        // após perdas mecânicas + ferro (P_u)
+    let (x1, x2, x3, x-fim) = (2.5, 5.5, 8.5, 11)
+    let rin = 0.5              // raio interior da curva dos ramos
+    let y-fim = b0 - 1.2       // fim vertical dos ramos
+
+    // Gradiente da banda principal; cada ramo parte da cor da banda no ponto onde sai
+    // e vai até ao vermelho na ponta da seta (um único gradiente por ramo)
+    let cor-fluxo = gradient.linear(rgb("#2f6fb0"), rgb("#a9c9ea"))
+    let cor-ramo(x0) = gradient.linear(
+      cor-fluxo.sample(x0 / x-fim * 100%), rgb("#d9534f"), angle: 90deg,
+    )
+
+    // Ramo de perdas: sai da fatia [ya, ya + t] da banda, curva para baixo e termina em ponta de seta
+    let ramo(x0, ya, t) = {
+      let n = 14
+      let cy = ya - rin
+      let rout = rin + t
+      let arco(r) = range(0, n + 1).map(i => {
+        let th = 90deg * i / n
+        (x0 + r * calc.sin(th), cy + r * calc.cos(th))
+      })
+      line(
+        ..arco(rout),
+        (x0 + rout, y-fim), (x0 + rout + 0.12, y-fim),
+        (x0 + rin + t / 2, y-fim - 0.3),
+        (x0 + rin - 0.12, y-fim), (x0 + rin, y-fim),
+        ..arco(rin).rev(),
+        close: true, fill: cor-ramo(x0), stroke: none,
+      )
+    }
+
+    // Banda principal
+    line(
+      (0, y-topo), (x-fim, y-topo), (x-fim, b3), (x3, b3), (x3, b2), (x2, b2),
+      (x2, b1), (x1, b1), (x1, b0), (0, b0),
+      close: true, fill: cor-fluxo, stroke: none,
+    )
+
+    // Perdas: induzido, derivação, mecânicas + ferro
+    ramo(x1, b0, t-ind)
+    ramo(x2, b1, t-der)
+    ramo(x3, b2, t-mec)
+
+    // Potências inscritas na banda, todas à mesma altura
+    let y-med = (y-topo + b0) / 2
+    content((x1 / 2*0.5, y-med), text(fill: white, [$P_"ab"$]))
+    content(((x2 + x3) / 2, y-med), [$P_d$])
+    content(((x3 + x-fim*1.13) / 2, y-med), [$P_u$])
+
+    // Legendas das perdas (centradas no ramo)
+    let y-leg = y-fim - 0.45
+    content((x1 + rin + t-ind / 2, y-leg), [$p_J^"ind"$], anchor: "north")
+    content((x2 + rin + t-ind / 2, y-leg), 
+    [$p_J^"der"$], anchor: "north")
+    content((x3 + rin + t-mec / 2, y-leg), [$p_"(mec+Fe)"$], anchor: "north")
+  })
+]
+
+#v(12pt)
+
+#align(center)[
+  #table(
+    columns: 2,
+    align: left+horizon,
+    inset: 8pt,
+    stroke: (x: 0.5pt, y: 0.5pt), rows: (24pt, 30pt, 40pt, 30pt),
+    table.header([*Potências*], [*Perdas*]),
+    [$P_"ab" = U thin I$], [$p_J^"ind" = R_i thin I_i^2$],
+    [$P_d = E' thin I_i = T_("mi") thin omega quad quad quad quad$], [$p_J^"der" = U thin I_d quad$ ou $quad R_"ex" thin I_d^2 quad$ ou $quad display(U^2 / R_"ex")$],
+    [$P_u = T_u thin omega$], [$p_"(mec+Fe)" approx T_p thin omega$],
+  )
+]
+
+]
+
+#v(12pt)
+  #rect(fill: luma(240),  height: 65%, width: 100%,stroke: (left: 0.25em))[ 
+#set par(hanging-indent: 1cm)
+
+
+#v(12pt) 
+*II-d)*#h(0.5em) Curvas características de binário desenvolvido, $T_d=f(I)$, com: $space display(cases(U = "constante", R_c = "constante"))$
+#v(12pt)
+
+#import "@preview/cetz:0.5.3"
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
+    let seta = (end: ">", fill: black, scale: 0.9)
+    let curva(k, b, xmax, ..estilo) = line(
+      ..range(0, 41).map(i => {
+        let x = xmax * i / 40
+        (x, k * x / (1 + b * x))
+      }),
+      ..estilo,
+    )
+
+    // Eixos
+    line((0, 0), (0, 5.5), mark: seta)
+    line((0, 0), (7.3, 0), mark: seta)
+    content((-0.4, 5), [$T_d$])
+    content((6.5, -0.45), [$I approx I_i$])
+
+    // Característica sem ΔE (linear, tracejada)
+    line((0, 0), (6.05, 5.47), stroke: (dash: "dashed"))
+    line((8, 1.65), (9, 1.65), stroke: (dash: "dashed"))
+    content((9.9, 1.70), [sem $Delta E$])
+
+    // Características com ΔE, para valores crescentes de R_c
+    curva(0.9, 0.07, 6.0)
+    line((8, 1), (9, 1), stroke: 0.85pt)
+    content((9.9, 1.05), [com $Delta E$])
+    content((8.74, 2.6), [Legenda:])
+    curva(0.7, 0.10, 6.0)
+    curva(0.5, 0.12, 6.0)
+    
+
+    // Seta de R_c crescente
+    line((1.8, 2.7), (3.1, 0.5), mark: seta)
+    content((1.9, 3.2), [$R_c arrow.tr$])
+
+    // Vertical em I e pontos de funcionamento
+    line((4, 0), (4, 4.3), stroke: (dash: "dotted"))
+    content((4, -0.4), [$I$])
+    for y in (3.63, 2.82, 2.00, 1.35) {
+      circle((4, y), radius: 0.05, fill: black, stroke: none)
+    }
+  })
+]
+
+#v(12pt)
+#h(1cm)Justificação das características de binário desenvolvido:
+
+#h(1cm)$T_d = k thin phi.alt_0 thin I_i quad$ com $quad k thin phi.alt_0=$ constante $space==>space$ característica linear $("sem" Delta E)$
+#v(6pt)
+#h(1cm)$T_d = k thin phi.alt thin I_i quad$ com $quad k thin phi.alt < k thin phi.alt_0$, diminuindo com o aumento da corrente $I_i$ $==>$ característica não linear $("com" Delta E)$
+#v(12pt)
+ou: $quad display(T_d = E'_0 / omega thin I_i) quad ("sem" Delta E) quad$ _vs._ $quad display(T_d = E' / omega thin I_i quad) ("com" Delta E), quad$ onde: $quad E' < E'_0$
+#v(12pt)
+Efeito do aumento de $R_c$ nas características de binário desenvolvido:
+
+#h(1cm)$R_c arrow.tr quad ==> quad I_d arrow.br quad ==> quad phi.alt arrow.br quad ==> quad T_d arrow.br$
+
+
+
+]
+
+
+#v(42pt)
 
 == Bibliografia
 
@@ -1492,10 +1858,18 @@ Se o variador eletrónico de velocidade for bidirecional em corrente, então oco
 )
   
 
+//#pagebreak(to: "odd")
 
 
 
-#pagebreak(to: "odd")
+// //verso-Prefácio:
+ #set page(
+   header: context [],
+   footer: context []
+ )
+ #v(100%)    //forma expedita de colocar página em branco, sem estar numerado
+// //verso-Prefácio|
+
 
 
 #set page(
@@ -1503,14 +1877,18 @@ Se o variador eletrónico de velocidade for bidirecional em corrente, então oco
     #set text(8pt, font: "Source Code Pro")
     #upper()[ISEL\\LEE\\ME II]
     #h(1fr) Máquinas Síncronas Trifásicas
-  ]
+  ],
+  numbering: none,
+  footer: context [
+    #set align(center)
+    #set text(9pt, font: "Libertinus Math")
+    #counter(page).display("1")
+    ], 
   )
-  
-
+#counter(page).update(33)
 
 
 = Máquinas Síncronas Trifásicas
-
 
 == Exercício 1
 #v(12pt) 
@@ -1661,7 +2039,21 @@ A central opera em três modos, facilitados por duas embraiagens do tipo SSS (_S
 
 -   *Modo Compensador Síncrono:* Ambas as embraiagens estão abertas e a máquina funciona em vazio, focando-se na gestão de potência reativa para suporte da rede.
 
-#figure(image("/images/CAES_plant.png", width: 80%), caption: [Esquema simplificado de funcionamento da central termoelétrica CAES de Huntorf, Alemanha. Adaptado de [EERA, 2013]], numbering: none)
+#let url-drawio = "https://app.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2FRicardo-Luis%2Fme-2-oer%2Fmain%2Fexercises%2Fdraw%2FCAES_plant.drawio"
+
+
+#figure(
+  link(url-drawio)[
+    #image("images/CAES_plant.png", width: 80%,
+      alt: "Huntorf CAES thermal power plant")
+  ],
+  numbering: none,
+  caption:[
+    #text(size: 1em)[Esquema simplificado de funcionamento da central termoelétrica CAES de Huntorf, Alemanha. Adaptado de [EERA, 2013]]])
+
+
+
+
 
 #v(6pt)
 *Parte 1: Modo Alternador (Geração de Energia) -- Período de ponta*\
@@ -1719,7 +2111,7 @@ A central opera em três modos, facilitados por duas embraiagens do tipo SSS (_S
     *c)*\
 
 
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #move(dx: 2cm, {
 cetz.canvas({
   import cetz.draw: *
@@ -1746,7 +2138,7 @@ cetz.canvas({
 
   
   line((0, 0), (Eph,E), name: "E0", mark: (end: ">"))
-  content((Eph+4deg, 0.5*E), $overline(E)_0^'$)
+  content((Eph+4deg, 0.5*E), $overline(E)_0$)
   })
 
   group({
@@ -1831,7 +2223,7 @@ group({
     *c)*\
 
 
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #move(dx: 2cm, {
 cetz.canvas({
   import cetz.draw: *
@@ -1979,7 +2371,7 @@ group({
     #v(6pt)
     #underline[Diagrama vetorial]:
     
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #move(dx: 2cm, {
 cetz.canvas({
   import cetz.draw: *
@@ -2164,7 +2556,7 @@ um barramento de $11$~kV$-60$~Hz e funciona como compensador síncrono. Despreze
 #h(1cm)    #underline[Diagrama vetorial]:
     
     
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #move(dx: 2cm, {
 cetz.canvas({
   import cetz.draw: *
@@ -2212,7 +2604,7 @@ cetz.canvas({
 #v(6pt)
 #h(1cm)#underline[Diagrama vetorial]:
 
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #move(dx: 2cm, {
 cetz.canvas({
   import cetz.draw: *
@@ -2266,7 +2658,7 @@ cetz.canvas({
 
     \
     #underline[Diagrama vetorial]:
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #move(dx: 2cm, {
 cetz.canvas({
   import cetz.draw: *
@@ -2381,7 +2773,7 @@ Um alternador síncrono de polos salientes, $12$~MVA, ligação em triângulo, $
 
 *a)*
 
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #cetz.canvas({
   import cetz.draw: *
   let scaleI=60
@@ -2507,7 +2899,7 @@ $P_d^"max" &= display((3 U E_0)/X_d) sin delta_"lim" + display((3U^2(X_d-X_q))/(
 Diagrama vetorial de tensões do condensador síncrono de polos salientes:
 
 \
-#import "@preview/cetz:0.3.0"
+#import "@preview/cetz:0.5.3"
 #cetz.canvas({
   import cetz.draw: *
   let scaleI = 40
@@ -2635,7 +3027,7 @@ Operating Principle, SSS Notes Reference NR2167, SSS Gears Limited. URL:
     #counter(page).display("1")
     ], 
   )
-#counter(page).update(41)
+#counter(page).update(53)
 
 
 = Transitórios de Máquinas Elétricas
@@ -2841,12 +3233,11 @@ align: right,
         
         // Coluna direita - Informação básica
         align(left + horizon)[
-          #text(size: 11pt, weight: "bold")[
-            REA/OER | CC BY-SA 4.0
+          #text(size: 11pt, weight: "bold")[REA/OER | CC BY-SA 4.0
           ]
           
           #v(0.1cm)
-          
+          #h(-20pt)
           #text(size: 11pt)[
             #autor | #instituicao | #ano
           ]
